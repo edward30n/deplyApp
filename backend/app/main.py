@@ -116,51 +116,41 @@ def debug_tables(db: Session = Depends(get_db)):
     except Exception as e:
         return {"error": str(e)}
 
+# Simple CORS test endpoint
+@app.get("/api/v1/test/cors")
+def test_cors():
+    """
+    Simple endpoint to test CORS and basic connectivity
+    """
+    return {
+        "status": "ok",
+        "message": "CORS and connectivity working",
+        "timestamp": "2025-09-17",
+        "service": "RecWay API"
+    }
+
 # Countries endpoint (needed by frontend)
 @app.get("/api/v1/countries")
-def get_countries(db: Session = Depends(get_db)):
+def get_countries():
     """
     Get list of available countries for frontend signup
+    Returns hardcoded list for now due to DB issues
     """
-    from app.models.user import Country
+    # Static phone prefixes mapping 
+    countries_with_prefixes = [
+        {"code": "CO", "name": "Colombia", "phone_prefix": "+57"},
+        {"code": "US", "name": "United States", "phone_prefix": "+1"},
+        {"code": "MX", "name": "Mexico", "phone_prefix": "+52"},
+        {"code": "AR", "name": "Argentina", "phone_prefix": "+54"},
+        {"code": "BR", "name": "Brazil", "phone_prefix": "+55"},
+        {"code": "CL", "name": "Chile", "phone_prefix": "+56"},
+        {"code": "PE", "name": "Peru", "phone_prefix": "+51"},
+        {"code": "EC", "name": "Ecuador", "phone_prefix": "+593"},
+        {"code": "ES", "name": "Spain", "phone_prefix": "+34"},
+        {"code": "UK", "name": "United Kingdom", "phone_prefix": "+44"}
+    ]
     
-    try:
-        countries = db.query(Country).order_by(Country.name).all()
-        
-        # If no countries found, try to initialize them
-        if not countries:
-            init_countries(db)
-            countries = db.query(Country).order_by(Country.name).all()
-        
-        # Static phone prefixes mapping since it's not in DB schema
-        phone_prefixes = {
-            'CO': '+57', 'US': '+1', 'MX': '+52', 'AR': '+54', 'BR': '+55',
-            'CL': '+56', 'PE': '+51', 'EC': '+593', 'ES': '+34', 'UK': '+44'
-        }
-        
-        return [
-            {
-                "code": country.code,
-                "name": country.name,
-                "phone_prefix": phone_prefixes.get(country.code, "+1")
-            }
-            for country in countries
-        ]
-    except Exception as e:
-        logger.error(f"Error getting countries: {e}")
-        # Return hardcoded list as fallback
-        return [
-            {"code": "CO", "name": "Colombia", "phone_prefix": "+57"},
-            {"code": "US", "name": "United States", "phone_prefix": "+1"},
-            {"code": "MX", "name": "Mexico", "phone_prefix": "+52"},
-            {"code": "AR", "name": "Argentina", "phone_prefix": "+54"},
-            {"code": "BR", "name": "Brazil", "phone_prefix": "+55"},
-            {"code": "CL", "name": "Chile", "phone_prefix": "+56"},
-            {"code": "PE", "name": "Peru", "phone_prefix": "+51"},
-            {"code": "EC", "name": "Ecuador", "phone_prefix": "+593"},
-            {"code": "ES", "name": "Spain", "phone_prefix": "+34"},
-            {"code": "UK", "name": "United Kingdom", "phone_prefix": "+44"}
-        ]
+    return countries_with_prefixes
 
 @app.post("/api/v1/init-countries")
 def init_countries(db: Session = Depends(get_db)):
