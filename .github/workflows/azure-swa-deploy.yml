@@ -29,3 +29,7 @@ jobs:
           app_location: "frontend"
           output_location: "dist"
           api_location: ""
+        env:
+          VITE_API_URL: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
+          VITE_API_BASE_URL: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
+          VITE_ENV: production

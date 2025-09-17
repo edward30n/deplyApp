@@ -216,6 +216,7 @@ export default function SignupPage() {
                     placeholder="Enter your email" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="username"
                     required 
                   />
                 </div>
