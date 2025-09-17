@@ -23,7 +23,7 @@ jobs:
         run: |
           npm ci
           # exporta la URL del backend en build-time si usas Vite
-          echo "VITE_API_URL=https://recway-backend-central.azurewebsites.net" >> .env.production
+          echo "VITE_API_URL=https://recway-backend-09171024.eastus.azurecontainer.io:8000" >> .env.production
           npm run build
 
       - name: Deploy to SWA

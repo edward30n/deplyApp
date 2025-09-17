@@ -1,61 +1,150 @@
-name: Deploy Backend (ACR → App Service)
+name: Deploy Backend to Azure Container Instancesname: Deploy Backend (ACR → App Service)
 
-on:
-  push:
-    branches: [ main ]
-    paths:
-      - "backend/**"
-      - ".github/workflows/deploy_backend.yml"
-      - "backend/Dockerfile.azure"
-  workflow_dispatch:
 
-env:
-  RG: recway-rg
-  WEBAPP: recway-backend-central
-  ACR: recwayacr2
-  IMAGE_NAME: recway-backend
 
-jobs:
+on:on:
+
+  push:  push:
+
+    branches: [ main ]    branches: [ main ]
+
+    paths:    paths:
+
+      - "backend/**"      - "backend/**"
+
+      - ".github/workflows/deploy_backend.yml"      - ".github/workflows/deploy_backend.yml"
+
+      - "backend/Dockerfile.azure"      - "backend/Dockerfile.azure"
+
+  workflow_dispatch:  workflow_dispatch:
+
+
+
+env:env:
+
+  RG: recway-rg  RG: recway-rg
+
+  CONTAINER_NAME: recway-backend  WEBAPP: recway-backend-central
+
+  ACR: recway09171024  ACR: recwayacr2
+
+  IMAGE_NAME: recway-backend  IMAGE_NAME: recway-backend
+
+  KEY_VAULT_NAME: recway-kv-09171024
+
+  DNS_LABEL: recway-backend-09171024jobs:
+
   build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
 
-    steps:
+jobs:    runs-on: ubuntu-latest
+
+  build-and-deploy:    permissions:
+
+    runs-on: ubuntu-latest      id-token: write
+
+    permissions:      contents: read
+
+      id-token: write
+
+      contents: read    steps:
+
       - uses: actions/checkout@v4
 
-      - name: Azure Login (OIDC)
+    steps:
+
+      - uses: actions/checkout@v4      - name: Azure Login (OIDC)
+
         uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+
+      - name: Azure Login (OIDC)        with:
+
+        uses: azure/login@v2          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+
+        with:          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Get ACR login server
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}      - name: Get ACR login server
+
         id: acr
-        run: echo "login_server=$(az acr show -n $ACR --query loginServer -o tsv)" >> $GITHUB_OUTPUT
 
-      - name: Build & Push (Docker Buildx)
+      - name: Get ACR login server        run: echo "login_server=$(az acr show -n $ACR --query loginServer -o tsv)" >> $GITHUB_OUTPUT
+
+        id: acr
+
+        run: echo "login_server=$(az acr show -n $ACR --query loginServer -o tsv)" >> $GITHUB_OUTPUT      - name: Build & Push (Docker Buildx)
+
         uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: backend/Dockerfile.azure
-          push: true
-          tags: |
+
+      - name: Build & Push (Docker Buildx)        with:
+
+        uses: docker/build-push-action@v6          context: .
+
+        with:          file: backend/Dockerfile.azure
+
+          context: .          push: true
+
+          file: backend/Dockerfile.azure          tags: |
+
+          push: true            ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }}
+
+          tags: |            ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:latest
+
             ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }}
-            ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:latest
 
-      - name: Point App Service to new image
+            ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:latest      - name: Point App Service to new image
+
         run: |
-          az webapp config container set -g $RG -n $WEBAPP \
-            --docker-custom-image-name ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }} \
-            --docker-registry-server-url https://${{ steps.acr.outputs.login_server }}
 
-      - name: Ensure base app settings (idempotent)
+      - name: Deploy to Azure Container Instances          az webapp config container set -g $RG -n $WEBAPP \
+
+        run: |            --docker-custom-image-name ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }} \
+
+          # Get ACR credentials            --docker-registry-server-url https://${{ steps.acr.outputs.login_server }}
+
+          ACR_USERNAME=$(az acr credential show --name $ACR --query username -o tsv)
+
+          ACR_PASSWORD=$(az acr credential show --name $ACR --query passwords[0].value -o tsv)      - name: Ensure base app settings (idempotent)
+
+                  run: |
+
+          # Get secrets from Key Vault          az webapp config appsettings set -g $RG -n $WEBAPP --settings \
+
+          DATABASE_URL=$(az keyvault secret show --vault-name $KEY_VAULT_NAME --name database-url --query value -o tsv)            WEBSITES_PORT=8000 ENV=azure API_V1_STR=/api/v1 ENABLE_FILE_WATCHER=false
+
+          JWT_SECRET=$(az keyvault secret show --vault-name $KEY_VAULT_NAME --name jwt-secret --query value -o tsv)
+
+          STORAGE_CONNECTION=$(az keyvault secret show --vault-name $KEY_VAULT_NAME --name storage-connection --query value -o tsv)      - name: Restart app
+
+                  run: az webapp restart -g $RG -n $WEBAPP
+          # Delete existing container if exists
+          az container delete --resource-group $RG --name $CONTAINER_NAME --yes || echo "Container not found, continuing..."
+          
+          # Deploy container
+          az container create \
+            --resource-group $RG \
+            --name $CONTAINER_NAME \
+            --image ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:latest \
+            --registry-login-server ${{ steps.acr.outputs.login_server }} \
+            --registry-username $ACR_USERNAME \
+            --registry-password $ACR_PASSWORD \
+            --dns-name-label $DNS_LABEL \
+            --ports 8000 \
+            --os-type Linux \
+            --cpu 1 \
+            --memory 2 \
+            --environment-variables \
+              DATABASE_URL="$DATABASE_URL" \
+              JWT_SECRET_KEY="$JWT_SECRET" \
+              AZURE_STORAGE_CONNECTION_STRING="$STORAGE_CONNECTION" \
+              ENVIRONMENT=production \
+            --restart-policy Always
+
+      - name: Show deployment info
         run: |
-          az webapp config appsettings set -g $RG -n $WEBAPP --settings \
-            WEBSITES_PORT=8000 ENV=azure API_V1_STR=/api/v1 ENABLE_FILE_WATCHER=false
-
-      - name: Restart app
-        run: az webapp restart -g $RG -n $WEBAPP
+          echo "✅ Backend deployed successfully!"
+          echo "🌐 Backend URL: https://$DNS_LABEL.eastus.azurecontainer.io:8000"
+          echo "❤️ Health check: https://$DNS_LABEL.eastus.azurecontainer.io:8000/health"
+          echo "📚 API docs: https://$DNS_LABEL.eastus.azurecontainer.io:8000/docs"
