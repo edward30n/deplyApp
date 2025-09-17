@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 env:
-  VITE_API_URL: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
-  VITE_API_BASE_URL: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
+  VITE_API_URL: https://recway-backend-central.azurewebsites.net
+  VITE_API_BASE_URL: https://recway-backend-central.azurewebsites.net
 
 jobs:
   build_and_deploy_job:
@@ -30,6 +30,6 @@ jobs:
           output_location: "dist"
           api_location: ""
         env:
-          VITE_API_URL: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
-          VITE_API_BASE_URL: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
+          VITE_API_URL: https://recway-backend-central.azurewebsites.net
+          VITE_API_BASE_URL: https://recway-backend-central.azurewebsites.net
           VITE_ENV: production
