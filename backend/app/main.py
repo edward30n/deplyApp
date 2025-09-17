@@ -72,6 +72,50 @@ async def shutdown_event():
     stop_file_watcher()
     logger.info("✅ File Watcher detenido")
 
+# Debug endpoint to check database tables
+@app.get("/api/v1/debug/tables")
+def debug_tables(db: Session = Depends(get_db)):
+    """
+    Debug endpoint to check database tables status
+    """
+    try:
+        from sqlalchemy import text
+        from app.models.user import Country
+        
+        result = {}
+        
+        # Check if countries table exists
+        try:
+            table_exists = db.execute(text("""
+                SELECT EXISTS (
+                    SELECT FROM information_schema.tables 
+                    WHERE table_schema = 'public' 
+                    AND table_name = 'countries'
+                );
+            """)).scalar()
+            result["countries_table_exists"] = table_exists
+        except Exception as e:
+            result["countries_table_exists"] = f"Error: {str(e)}"
+        
+        # Try to count countries
+        try:
+            count = db.query(Country).count()
+            result["countries_count"] = count
+        except Exception as e:
+            result["countries_count"] = f"Error: {str(e)}"
+        
+        # Try to get first few countries
+        try:
+            countries = db.query(Country).limit(3).all()
+            result["sample_countries"] = [{"code": c.code, "name": c.name} for c in countries]
+        except Exception as e:
+            result["sample_countries"] = f"Error: {str(e)}"
+            
+        return result
+        
+    except Exception as e:
+        return {"error": str(e)}
+
 # Countries endpoint (needed by frontend)
 @app.get("/api/v1/countries")
 def get_countries(db: Session = Depends(get_db)):
