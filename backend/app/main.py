@@ -129,6 +129,64 @@ def test_cors():
         "service": "RecWay API"
     }
 
+# List all database tables
+@app.get("/api/v1/debug/list-tables")
+def list_all_tables(db: Session = Depends(get_db)):
+    """
+    List all tables in the database
+    """
+    try:
+        from sqlalchemy import text
+        
+        # Query to get all tables
+        result = db.execute(text("""
+            SELECT 
+                table_name,
+                table_schema,
+                table_type
+            FROM information_schema.tables 
+            WHERE table_schema = 'public'
+            ORDER BY table_name;
+        """))
+        
+        tables = []
+        for row in result:
+            tables.append({
+                "table_name": row[0],
+                "schema": row[1], 
+                "type": row[2]
+            })
+        
+        # Also get table sizes and row counts
+        table_info = []
+        for table in tables:
+            try:
+                # Get row count
+                count_result = db.execute(text(f"SELECT COUNT(*) FROM {table['table_name']}"))
+                row_count = count_result.scalar()
+                
+                table_info.append({
+                    "name": table['table_name'],
+                    "schema": table['schema'],
+                    "type": table['type'],
+                    "row_count": row_count
+                })
+            except Exception as e:
+                table_info.append({
+                    "name": table['table_name'],
+                    "schema": table['schema'], 
+                    "type": table['type'],
+                    "row_count": f"Error: {str(e)}"
+                })
+        
+        return {
+            "total_tables": len(tables),
+            "tables": table_info
+        }
+        
+    except Exception as e:
+        return {"error": str(e)}
+
 # Countries endpoint (needed by frontend)
 @app.get("/api/v1/countries")
 def get_countries():
