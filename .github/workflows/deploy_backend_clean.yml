@@ -1,0 +1,61 @@
+name: Deploy Backend (ACR → App Service)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy_backend.yml"
+      - "backend/Dockerfile.azure"
+  workflow_dispatch:
+
+env:
+  RG: recway-rg
+  WEBAPP: recway-backend-central
+  ACR: recwayacr2
+  IMAGE_NAME: recway-backend
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Get ACR login server
+        id: acr
+        run: echo "login_server=$(az acr show -n $ACR --query loginServer -o tsv)" >> $GITHUB_OUTPUT
+
+      - name: Build & Push (Docker Buildx)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: backend/Dockerfile.azure
+          push: true
+          tags: |
+            ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }}
+            ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Point App Service to new image
+        run: |
+          az webapp config container set -g $RG -n $WEBAPP \
+            --docker-custom-image-name ${{ steps.acr.outputs.login_server }}/${{ env.IMAGE_NAME }}:prod-${{ github.sha }} \
+            --docker-registry-server-url https://${{ steps.acr.outputs.login_server }}
+
+      - name: Ensure base app settings (idempotent)
+        run: |
+          az webapp config appsettings set -g $RG -n $WEBAPP --settings \
+            WEBSITES_PORT=8000 ENV=azure API_V1_STR=/api/v1 ENABLE_FILE_WATCHER=false
+
+      - name: Restart app
+        run: az webapp restart -g $RG -n $WEBAPP

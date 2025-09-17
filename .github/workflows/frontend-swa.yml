@@ -1,11 +1,10 @@
-name: Deploy Frontend to Azure Static Web Apps
+name: Frontend SWA Deploy
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'frontend/**'
-      - '.github/workflows/deploy_frontend_swa.yml'
   workflow_dispatch: {}
 
 jobs:
@@ -19,7 +18,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build Frontend
+      - name: Install & Build
         working-directory: ./frontend
         run: |
           npm ci

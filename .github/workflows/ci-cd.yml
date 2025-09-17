@@ -1,0 +1,160 @@
+name: RecWay CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, conf_docker ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Job 1: Linting y validación
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 black isort
+        pip install -r backend/requirements.txt
+    
+    - name: Lint with flake8
+      run: |
+        python -m flake8 backend/app --count --select=E9,F63,F7,F82 --show-source --statistics
+        python -m flake8 backend/app --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
+    - name: Check code formatting with black
+      run: |
+        python -m black --check backend/
+    
+    - name: Check import sorting with isort
+      run: |
+        python -m isort --check-only backend/
+
+  # Job 2: Construir y probar con Docker
+  build-and-test:
+    runs-on: ubuntu-latest
+    needs: lint
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Create .env.docker file
+      run: |
+        cp backend/.env.docker.example backend/.env.docker
+        sed -i 's/TU_PASSWORD_AQUI/test_password_123/g' backend/.env.docker
+    
+    - name: Build Docker images
+      run: |
+        docker compose build
+    
+    - name: Start services
+      run: |
+        docker compose up -d
+        sleep 30  # Esperar a que los servicios estén listos
+    
+    - name: Check services health
+      run: |
+        docker compose ps
+        docker compose logs backend
+    
+    - name: Test API endpoints
+      run: |
+        # Probar que la API responda
+        curl -f http://localhost:8000/ || exit 1
+        curl -f http://localhost:8000/health || exit 1
+        # Probar que la documentación esté disponible
+        curl -f http://localhost:8000/docs || exit 1
+    
+    - name: Test database connection
+      run: |
+        # Verificar que las tablas se crearon
+        docker compose exec -T recway_db psql -U postgres -d recWay_db -c "\dt"
+    
+    - name: Stop services
+      run: |
+        docker compose down
+
+  # Job 3: Construir y subir imagen a GitHub Container Registry
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha
+          type=raw,value=latest,enable={{is_default_branch}}
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./backend
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+
+  # Job 4: Crear release automático en tags
+  release:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: RecWay ${{ github.ref }}
+        body: |
+          ## Cambios en esta versión
+          
+          ### Docker
+          - Imagen disponible en: `ghcr.io/${{ github.repository }}:${{ github.ref_name }}`
+          
+          ### Instalación rápida
+          ```bash
+          docker pull ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          ```
+        draft: false
+        prerelease: false

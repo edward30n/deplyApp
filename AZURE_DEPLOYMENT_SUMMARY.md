@@ -90,8 +90,8 @@ AZURE_STATIC_WEB_APPS_API_TOKEN: 1fbca8fbd0c9492944b15518f4ff31c2d989d9176b36ff9
 ## 🎯 URLs de Producción
 
 - **Frontend**: https://ashy-ground-06348160f.1.azurestaticapps.net
-- **Backend**: https://recway-backend-09171024.eastus.azurecontainer.io:8000 (pendiente deployment)
-- **API Health Check**: https://recway-backend-09171024.eastus.azurecontainer.io:8000/health
+- **Backend**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
+- **API Health Check**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io/health
 
 ---
 

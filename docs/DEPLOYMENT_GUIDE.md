@@ -1,293 +1,225 @@
-﻿# RecWay Deployment Guide: Production Ready Architecture
+# RecWa### ✅ Completado
+- [x] Análisis inicial de dependencias localhost - **14 archivos con referencias hardcodeadas**
+- [x] Configuración de variables de entorno backend - **CORS dinámico implementado**
+- [x] Configuración de variables de entorno frontend - **Configuración centralizada creada**
+- [x] CORS dinámico - **Flexible entre local/Azure automáticamente**
+- [ ] Uvicorn Azure-ready
+- [x] Eliminación localhost hardcoded - **✅ TODAS LAS REFERENCIAS ELIMINADAS**
+- [ ] Storage flexible
+- [x] Testing local post-cambios - **✅ Build exitoso**
+- [ ] Verificación Azure-ready
 
-##  Objetivo
-Metodología completa para deployment de RecWay en Azure con arquitectura escalable y "git push y listo".
+### 🎯 Backend Configuration - COMPLETADO
+- ✅ **Configuración flexible** entre `local`/`azure` usando `ENV` variable
+- ✅ **CORS dinámico** que adapta orígenes según entorno
+- ✅ **Variables centralizadas** en `app/core/config.py`
+- ✅ **Archivos .env separados**: `.env.local`, `.env.azure`, `.env`
+- ✅ **Proxy headers** configurados automáticamente para Azure
+- ✅ **Logging de configuración** para debugging
+
+### 🎯 Frontend Configuration - COMPLETADO
+- ✅ **Configuración centralizada** en `src/config/api.ts`
+- ✅ **Variables de entorno** `.env.local`, `.env.azure`
+- ✅ **API URL flexible** usando `VITE_API_URL`
+- ✅ **Helper functions** `buildApiUrl()`, `getApiHeaders()`
+- ✅ **Todas las referencias hardcodeadas eliminadas** de 9 archivos
+- ✅ **Import unificado** desde configuración central
+
+### 📋 Archivos Modificados/Creados
+**Backend:**
+- ✅ `backend/app/core/config.py` - CORS dinámico y configuración flexible
+- ✅ `backend/.env.local` - Variables de desarrollo local  
+- ✅ `backend/.env.azure` - Variables de producción Azure
+- ✅ `backend/app/api/endpoints/auto_processing.py` - URLs dinámicas
+
+**Frontend:**
+- ✅ `frontend/src/config/api.ts` - Configuración centralizada API
+- ✅ `frontend/.env.local` - Variables de desarrollo local
+- ✅ `frontend/.env.azure` - Variables de producción Azure
+- ✅ 9 archivos de servicios actualizados para usar configuración central
+
+**Documentación:**
+- ✅ `DEPLOYMENT_GUIDE.md` - Metodología completa de deploymentnt Guide: Local ↔ Azure Configuration
+
+## 📋 Objetivo
+Crear una metodología estructurada para hacer el código flexible entre desarrollo local y Azure, eliminando dependencias hardcodeadas a localhost.
+
+## 🎯 Estado del Proceso
+
+### ✅ Completado
+- [x] Análisis inicial de dependencias localhost - **14 archivos con referencias hardcodeadas**
+- [ ] Configuración de variables de entorno backend
+- [ ] Configuración de variables de entorno frontend  
+- [ ] CORS dinámico
+- [ ] Uvicorn Azure-ready
+- [ ] Eliminación localhost hardcoded
+- [ ] Storage flexible
+- [ ] Testing local post-cambios
+- [ ] Verificación Azure-ready
 
 ---
 
-##  Estado del Deployment
+## 🚨 Referencias Hardcodeadas Encontradas
 
-###  Completado
-- [x] **Análisis inicial** - Referencias localhost eliminadas
-- [x] **Configuración backend** - Variables de entorno flexibles
-- [x] **Configuración frontend** - API URL dinámica
-- [x] **CORS dinámico** - Adaptación automática por entorno
-- [x] **Dockerfile optimizado** - Dependencias geográficas incluidas
-- [x] **CI/CD completo** - GitHub Actions con OIDC
-- [x] **Base de datos** - Schema PostgreSQL listo
-- [x] **Infraestructura** - Scripts de bootstrap Azure
-- [x] **Documentación** - Guías paso a paso
-- [x] **Repositorio limpio** - https://github.com/edward30n/deplyApp
-
-###  En Progreso
-- [ ] **Ejecución bootstrap** - Crear recursos Azure
-- [ ] **Configuración secretos** - Key Vault + GitHub
-- [ ] **Primer deployment** - Validar pipeline completo
+### Frontend (13 archivos)
+- `frontend/.env` → `VITE_API_URL=http://localhost:8000`
+- `frontend/.env.example` → `VITE_API_URL=http://localhost:8000`
+- `frontend/src/services/simpleRoadDataService.ts` → `const API_BASE_URL = 'http://localhost:8000'`
+- `frontend/src/services/OptimizedRoadDataService.ts` → `const API_BASE_URL = 'http://localhost:8000'`
+- `frontend/src/services/roadDataService.ts` → `const API_BASE_URL = 'http://localhost:8000'`
+- `frontend/src/services/api.ts` → Fallback a `http://localhost:8000`
+- `frontend/src/pages/Dashboard/DashboardSecure.tsx` → `fetch('http://localhost:8000/api/v1/auth/health')`
+- `frontend/src/pages/auth/LoginPage.tsx` → `fetch("http://localhost:8000/api/v1/auth/request-password-reset"`
+- `frontend/src/pages/auth/SignupPage.tsx` → 2x `fetch("http://localhost:8000/api/v1/..."`
+- `frontend/src/pages/auth/VerifyEmailPage.tsx` → `fetch(\`http://localhost:8000/api/v1/auth/verify-email\``
+- `frontend/src/contexts/AuthContext.tsx` → `fetch('http://localhost:8000/api/v1/auth/login'`
+- `frontend/src/components/ConnectionTest.tsx` → 3x referencias localhost
+- `frontend/Dockerfile` → `CMD curl -f http://localhost/health`
 
 ---
 
-##  Arquitectura Final
+## 🔧 Metodología: Variables de Entorno Centralizadas
 
-`
- Frontend (Static Web Apps)
-     HTTPS/CDN Global
-    
- Load Balancer & Autoscale (App Service S1)
-    
-    
- Backend Container (ACR + App Service)
-    
-    
- PostgreSQL Flexible Server
- Azure Storage Account
- Key Vault (Managed Identity)
- Application Insights
-`
-
-### Componentes Clave
-- **Plan S1**: Autoscale automático (13 instancias)
-- **Blue-Green**: Deployment slots para zero downtime
-- **Seguridad**: Managed Identity + Key Vault references
-- **Monitoring**: Application Insights + Log Analytics
-
----
-
-##  Backend Configuration - COMPLETADO
-
-### Variables de Entorno
-`ash
+### Backend (.env files)
+```bash
 # .env.local (desarrollo)
 ENV=local
 DATABASE_URI=postgresql://user:pass@localhost:5432/recway_db
 FRONTEND_URL=http://localhost:5173
 CORS_ORIGINS=["http://localhost:5173"]
+BASE_URL=http://localhost:8000
 ENABLE_FILE_WATCHER=true
+USE_AZURE_STORAGE=false
 
-# .env.azure (producción) - vía Key Vault
-ENV=azure
-DATABASE_URI=@Microsoft.KeyVault(SecretUri=...)
-FRONTEND_URL=https://recway-frontend.azurestaticapps.net
-CORS_ORIGINS=["https://recway-frontend.azurestaticapps.net"]
+# .env.azure (producción)
+ENV=azure  
+DATABASE_URI=@Microsoft.KeyVault(...)
+FRONTEND_URL=https://<swa>.azurestaticapps.net
+CORS_ORIGINS=["https://<swa>.azurestaticapps.net"]
+BASE_URL=https://<webapp>.azurewebsites.net
 ENABLE_FILE_WATCHER=false
-`
+USE_AZURE_STORAGE=true
+```
 
-### CORS Dinámico
-`python
-# app/core/config.py
-def get_cors_origins():
-    if settings.ENV == "local":
-        return ["http://localhost:3000", "http://localhost:5173"]
-    return json.loads(os.getenv("CORS_ORIGINS", '["https://recway-frontend.azurestaticapps.net"]'))
-`
+### Frontend (.env files)
+```bash
+# .env.local (desarrollo)
+VITE_API_URL=http://localhost:8000
+VITE_APP_ENV=development
 
-### Health Check
-`python
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy", "timestamp": datetime.utcnow().isoformat()}
-`
+# .env.azure (producción)
+VITE_API_URL=https://recway-api.azurewebsites.net
+VITE_APP_ENV=production
+```
 
----
+### Uso de Configuración
 
-##  Frontend Configuration - COMPLETADO
+#### Backend
+```bash
+# Desarrollo local
+cp .env.local .env
+python -m uvicorn app.main:app --reload
 
-### API Configuration
-`	ypescript
-// src/config/api.ts
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+# Para Azure
+cp .env.azure .env
+python -m uvicorn app.main:app --proxy-headers
+```
 
-export const buildApiUrl = (endpoint: string): string => {
-  return ${API_BASE_URL};
-};
-`
+#### Frontend
+```bash
+# Desarrollo local
+cp .env.local .env
+npm run dev
 
-### Environment Variables
-`ash
+# Para Azure build
+cp .env.azure .env
+npm run build
+```
+
+### Frontend (.env files)
+```bash
 # .env.development
 VITE_API_URL=http://localhost:8000
 VITE_ENV=development
 
-# .env.production (en build)
-VITE_API_URL=https://recway-backend-central.azurewebsites.net
+# .env.production  
+VITE_API_URL=https://<webapp>.azurewebsites.net
 VITE_ENV=production
-`
+```
 
 ---
 
-##  Container Configuration
+## 📝 Checklist de Cambios
 
-### Dockerfile.azure
-`dockerfile
-FROM python:3.11-slim
+### 1. Backend Configuration
+- [ ] Crear sistema de configuración flexible en `app/core/config.py`
+- [ ] Actualizar CORS para leer `CORS_ORIGINS` de environment
+- [ ] Modificar uvicorn startup para Azure compatibility
+- [ ] Configurar storage backends (local/Azure Blob)
 
-# Dependencias geográficas para geopandas/osmnx
-RUN apt-get update && apt-get install -y \
-    curl gdal-bin libgdal-dev libspatialindex-dev \
-    libgeos-dev proj-bin libproj-dev \
-  && rm -rf /var/lib/apt/lists/*
+### 2. Frontend Configuration  
+- [ ] Centralizar API URL en variable de entorno
+- [ ] Reemplazar hardcoded localhost en services
+- [ ] Configurar build para production
 
-WORKDIR /app
-COPY backend/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY backend/ ./
-EXPOSE 8000
-HEALTHCHECK --interval=30s --timeout=3s CMD curl -fsS http://localhost:8000/health || exit 1
-CMD ["uvicorn","app.main:app","--host","0.0.0.0","--port","8000"]
-`
+### 3. Cleanup & Testing
+- [ ] Buscar/eliminar localhost hardcoded: `git grep -n -E "localhost|127\.0\.0\.1|:5173|:8000"`
+- [ ] Test configuración local
+- [ ] Test readiness para Azure
 
 ---
 
-##  CI/CD Pipeline
+## 🔍 Areas Críticas Identificadas
 
-### GitHub Actions - Backend
-**Archivo**: .github/workflows/deploy_backend.yml
+### Backend
+- `app/main.py` - CORS configuration
+- `app/core/config.py` - Environment variables
+- `app/services/` - Database y storage connections
+- Dockerfile y startup commands
 
-**Flujo**:
-1. **Trigger**: Push a main con cambios en ackend/**
-2. **OIDC Login**: Sin credenciales hardcodeadas
-3. **Build**: Docker con buildx
-4. **Push**: ACR con tags prod-{sha} y latest
-5. **Deploy**: App Service apunta a nueva imagen
-6. **Configure**: App settings base
-7. **Restart**: Aplicación
-
-### GitHub Actions - Frontend
-**Archivo**: .github/workflows/deploy_frontend_swa.yml
-
-**Flujo**:
-1. **Trigger**: Push a main con cambios en rontend/**
-2. **Setup**: Node 20
-3. **Build**: npm ci + build con Vite
-4. **Configure**: VITE_API_URL para producción
-5. **Deploy**: Static Web Apps
+### Frontend
+- `src/services/api.ts` - API base URL
+- `.env.*` files - Environment configuration
+- Build configuration en `package.json`
 
 ---
 
-##  Database Configuration
+## 📋 Testing Matrix
 
-### Schema Completo
-- **Ubicación**: database/schema.sql
-- **Incluye**: Autenticación, usuarios, empresas, datos viales, sensores
-- **Inicialización**: Script database/init_azure_db.sh
-
-### Connection String
-`ash
-postgresql://user:password@recway-db-new.postgres.database.azure.com:5432/recWay_db?sslmode=require
-`
+| Configuración | Backend URL | Frontend URL | Database | Storage | Status |
+|---------------|-------------|--------------|----------|---------|---------|
+| Local Dev     | localhost:8000 | localhost:5173 | Local PostgreSQL | Local Files | 🔄 |
+| Azure Prod    | webapp.azurewebsites.net | swa.azurestaticapps.net | Azure PostgreSQL | Azure Blob | ⏳ |
 
 ---
 
-##  Checklist de Deployment
+## 🚨 Problemas Conocidos & Soluciones
 
-### 0. Prerrequisitos
-- [ ] Azure CLI instalado y autenticado: z login
-- [ ] GitHub repo con Actions habilitadas
-- [ ] Repositorio: https://github.com/edward30n/deplyApp
+### Mixed Content (HTTPS/HTTP)
+- **Problema**: Frontend HTTPS → Backend HTTP = blocked
+- **Solución**: Siempre usar HTTPS en producción
 
-### 1. Infraestructura Azure
-`ash
-# Ejecutar bootstrap (una sola vez)
-chmod +x infra/scripts/azure_bootstrap.sh
-./infra/scripts/azure_bootstrap.sh
-`
+### CORS Cross-Origin  
+- **Problema**: SWA domain ≠ App Service domain
+- **Solución**: Configurar `allow_credentials=True` y orígenes específicos
 
-### 2. Configurar Secretos
-`ash
-# Key Vault secrets
-az keyvault secret set -n recway-secret-key --vault-name recway-keyvault-02 --value "jwt_secret_fuerte"
-az keyvault secret set -n recway-db-uri --vault-name recway-keyvault-02 --value "postgresql://..."
-az keyvault secret set -n recway-storage-conn --vault-name recway-keyvault-02 --value "connection_string"
-`
-
-### 3. App Settings
-`ash
-# Con Key Vault references
-az webapp config appsettings set -g recway-rg -n recway-backend-central --settings \
-  WEBSITES_PORT=8000 ENV=azure API_V1_STR=/api/v1 ENABLE_FILE_WATCHER=false \
-  SECRET_KEY=@Microsoft.KeyVault(...) \
-  DATABASE_URI=@Microsoft.KeyVault(...) \
-  AZURE_STORAGE_CONNECTION_STRING=@Microsoft.KeyVault(...)
-`
-
-### 4. GitHub Secrets
-`
-AZURE_CLIENT_ID=xxx-xxx-xxx
-AZURE_TENANT_ID=xxx-xxx-xxx  
-AZURE_SUBSCRIPTION_ID=xxx-xxx-xxx
-AZURE_STATIC_WEB_APPS_API_TOKEN=xxx
-`
-
-### 5. Base de Datos
-`ash
-# Inicializar schema
-./database/init_azure_db.sh
-`
-
-### 6. Primer Deployment
-`ash
-git push origin main
-`
-
-### 7. Verificación
-`ash
-# Health checks
-curl https://recway-backend-central.azurewebsites.net/health
-curl https://recway-backend-central.azurewebsites.net/api/v1/recway/processing-stats
-`
+### Proxy Headers
+- **Problema**: App Service usa proxy headers para HTTPS
+- **Solución**: `uvicorn --proxy-headers`
 
 ---
 
-##  Troubleshooting
+## 📝 Log de Cambios
 
-### Logs en Tiempo Real
-`ash
-az webapp log tail -g recway-rg -n recway-backend-central
-`
-
-### Container Issues
-`ash
-# Ver configuración actual
-az webapp config appsettings list -g recway-rg -n recway-backend-central
-
-# Verificar imagen en ACR
-az acr repository show-tags -n recwayacr2 --repository recway-backend
-`
-
-### Rollback
-`ash
-# Cambiar a tag anterior
-az webapp config container set -g recway-rg -n recway-backend-central \
-  --docker-custom-image-name recwayacr2.azurecr.io/recway-backend:prod-<commit_anterior>
-`
+### [PENDIENTE] - Configuración inicial
+- Análisis de dependencias localhost
+- Setup de variables de entorno
 
 ---
 
-##  Monitoreo
-
-### URLs de Verificación
-- **Backend Health**: https://recway-backend-central.azurewebsites.net/health
-- **Frontend**: https://recway-frontend.azurestaticapps.net
-- **Application Insights**: Azure Portal  recway-ai
-
-### Métricas Clave
-- CPU utilization (target: <70%)
-- Memory usage
-- Response times
-- Error rates (target: <1%)
-- Database connection health
-
----
-
-##  Próximos Pasos
-
-1.  **Documentación actualizada**
-2.  **Ejecutar azure_bootstrap.sh**
-3.  **Configurar secretos y GitHub**
-4.  **Primer deployment**
-5.  **Validación completa**
-
----
-
-** Estado**: Ready for Production Deployment  
-**Última actualización**: 2025-09-17  
-**Responsable**: DevOps Team
+## 🎯 Próximos Pasos
+1. Configurar variables de entorno backend
+2. Configurar variables de entorno frontend  
+3. Actualizar CORS dinámico
+4. Modificar uvicorn para Azure
+5. Testing completo local/Azure
