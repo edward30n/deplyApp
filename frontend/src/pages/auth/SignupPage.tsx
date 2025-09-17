@@ -275,6 +275,7 @@ export default function SignupPage() {
                     placeholder="Enter your password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="new-password"
                     required 
                   />
                   <button 
@@ -300,6 +301,7 @@ export default function SignupPage() {
                     placeholder="Confirm your password" 
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    autoComplete="new-password"
                     required 
                   />
                 </div>
