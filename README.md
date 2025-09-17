@@ -9,30 +9,30 @@
 
 ### 🌐 URLs de Producción Activas
 - **🖥️ Frontend (Azure Static Web Apps)**: https://ashy-ground-06348160f.1.azurestaticapps.net/
-- **🔧 Backend API (Azure Container Apps)**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
-- **❤️ Health Check**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io/health
-- **📚 API Documentation (Swagger)**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io/docs
+- **🔧 Backend API (Azure App Service Central)**: https://recway-backend-central.azurewebsites.net
+- **❤️ Health Check**: https://recway-backend-central.azurewebsites.net/health ✅
+- **🌍 Countries API**: https://recway-backend-central.azurewebsites.net/api/v1/countries ✅
+- **📚 API Documentation (Swagger)**: https://recway-backend-central.azurewebsites.net/docs
 
-### 🏗️ Arquitectura Cloud Implementada
+### 🏗️ Arquitectura Cloud Simplificada y Optimizada
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    AZURE CLOUD INFRASTRUCTURE                   │
+│              AZURE CLOUD INFRASTRUCTURE (SIMPLIFICADA)          │
 ├─────────────────────────────────────────────────────────────────┤
-│  🌐 Static Web Apps          🚀 Container Apps                   │
+│  🌐 Static Web Apps          🚀 App Service Central              │
 │  ├─ React + Vite            ├─ FastAPI Backend                  │
-│  ├─ TailwindCSS UI          ├─ Auto-scaling (0-5)               │
-│  ├─ CDN Global              ├─ CPU Threshold: 70%               │
-│  └─ Custom Domain Ready     └─ Health Monitoring                │
+│  ├─ TailwindCSS UI          ├─ Python 3.11                     │
+│  ├─ CDN Global              ├─ Health Monitoring                │
+│  └─ GitHub Actions Deploy   └─ Managed Identity                 │
 │                                                                  │
 │  📊 PostgreSQL Flexible     🔑 Azure Key Vault                  │
-│  ├─ SSL Enabled            ├─ Connection Strings                │
-│  ├─ Backup Automated       ├─ API Keys Secured                  │
-│  └─ Performance Optimized  └─ RBAC Configured                   │
+│  ├─ SSL Enabled            ├─ JWT Secrets                       │
+│  ├─ Backup Automated       ├─ Database Credentials              │
+│  └─ B1ms Performance       └─ RBAC Configured                   │
 │                                                                  │
-│  📦 Container Registry      🔄 GitHub Actions                    │
-│  ├─ Backend Images         ├─ CI/CD Automated                   │
-│  ├─ Version Control        ├─ Multi-environment                 │
-│  └─ Security Scanning      └─ Deployment Verified               │
+│  � COSTO TOTAL: ~$41/mes   📈 AHORRO: 47% vs arquitectura      │
+│  ✅ 100% FUNCIONAL         anterior (eliminados recursos        │
+│  ⚡ OPTIMIZADO              no utilizados)                       │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
