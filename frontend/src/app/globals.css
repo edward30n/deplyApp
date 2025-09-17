@@ -1,0 +1,306 @@
+/* Importa FontAwesome para los íconos del módulo de autenticación */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.3), 0 0 30px 15px rgba(255, 255, 255, 0.1);
+    animation: pulse-glow 2s infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.3), 0 0 30px 15px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.4), 0 0 40px 20px rgba(255, 255, 255, 0.15);
+    }
+    100% {
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.3), 0 0 30px 15px rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  /* Animación de gradiente para el fondo */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient-x {
+    background-size: 400% 400% !important;
+    animation: gradient-x 15s ease infinite !important;
+  }
+  
+  .blue-filter::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(59, 130, 246, 0.3);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  /* Page transition animations */
+  @keyframes fadeOutToLogin {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes fadeInFromLogin {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .page-transition-exit {
+    animation: fadeOutToLogin 0.5s forwards;
+  }
+
+  .page-transition-enter {
+    animation: fadeInFromLogin 0.5s forwards;
+  }
+  
+  /* Form selection elements */
+  .company-option {
+    @apply cursor-pointer rounded-lg p-3 text-center transition-all;
+  }
+  
+  .company-option-selected {
+    @apply bg-[#6a1b9a] text-white;
+  }
+  
+  .company-option-unselected {
+    @apply bg-white bg-opacity-20 text-white hover:bg-opacity-30;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .sidebar {
+    background-color: hsl(var(--sidebar-background));
+    color: hsl(var(--sidebar-foreground));
+    border-right: 1px solid hsl(var(--sidebar-border));
+    padding: 1rem;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+  }
+  .sidebar-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  /* Custom button styles */
+  .btn-account {
+    @apply transition-all duration-300 bg-[#00FF00] text-black border border-[#00FF00] hover:bg-transparent hover:text-[#00FF00];
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .btn-account::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+    z-index: -1;
+  }
+
+  .btn-account:hover::before {
+    left: 100%;
+  }
+  
+  .btn-account:active {
+    transform: scale(0.95);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-md bg-blue-600 text-white font-medium transition-all duration-300 hover:bg-[#00FF00] hover:text-black hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 rounded-md bg-transparent text-white font-medium border border-white transition-all duration-300 hover:border-[#00FF00] hover:text-[#00FF00] hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-white {
+    @apply px-6 py-3 rounded-md bg-white text-indigo-600 font-medium transition-all duration-300 hover:bg-[#00FF00] hover:text-black hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-outline-white {
+    @apply px-6 py-3 rounded-md bg-transparent text-white font-medium border border-white transition-all duration-300 hover:border-[#00FF00] hover:text-[#00FF00] hover:scale-105 hover:shadow-lg;
+  }
+  
+  /* Checkbox styling */
+  input[type="checkbox"] {
+    @apply cursor-pointer rounded border-gray-300 text-[#6a1b9a] focus:ring-[#6a1b9a];
+    /* Custom checkbox appearance */
+    appearance: none;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+    height: 1.2rem;
+    width: 1.2rem;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: #00FF00;
+    border-color: #00FF00;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3E%3Cpath d='M12.736 3.97a.733.733 0 011.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 01-1.065.02L3.217 8.384a.757.757 0 010-1.06.733.733 0 011.047 0l3.052 3.093 5.4-6.425a.247.247 0 01.02-.022z'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(106, 27, 154, 0.5);
+  }
+
+  /* Terms and conditions page styles */
+  .terms-section {
+    @apply mb-8;
+  }
+  
+  .terms-heading {
+    @apply text-xl font-semibold text-[#283694] mb-3;
+  }
+  
+  .terms-text {
+    @apply text-gray-700;
+  }
+}
+
+/* Añade esto a tus estilos globales */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}

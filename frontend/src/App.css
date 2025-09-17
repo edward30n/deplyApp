@@ -1,0 +1,10 @@
+/* RecWay App Styles - Custom styles for the application */
+
+/* Utility classes for the application */
+.page-container {
+  @apply min-h-screen bg-gray-50;
+}
+
+.content-wrapper {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}

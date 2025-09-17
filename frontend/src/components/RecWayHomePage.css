@@ -1,0 +1,1160 @@
+/**
+ * RECWAY HOME PAGE STYLES
+ * CSS completo para el componente RecWayHomePage.tsx
+ * Adaptado desde SmartEpi para RecWay - Monitoreo Ambiental
+ * 
+ * ESTRUCTURA:
+ * - Variables CSS
+ * - Reset y base
+ * - Hero Section
+ * - Features Section
+ * - Video Section
+ * - How It Works Section
+ * - Team Section
+ * - Pricing Section
+ * - CTA Section
+ * - Contact Section
+ * - Footer
+ * - Responsive Design
+ * - Animaciones
+ * - Utilidades
+ */
+
+/* ===== VARIABLES CSS ===== */
+:root {
+  --recway-primary: #1e88e5;
+  --recway-secondary: #2563eb;
+  --recway-accent: #10b981;
+  --recway-green: #059669;
+  --recway-dark: #1f2937;
+  --recway-light: #f9fafb;
+  --recway-gray: #6b7280;
+  --recway-white: #ffffff;
+  --recway-black: #000000;
+  
+  --recway-gradient-primary: linear-gradient(to top right, #1e88e5, #059669, #2563eb);
+  --recway-gradient-cta: linear-gradient(135deg, #1e88e5, #10b981);
+  --recway-gradient-footer: linear-gradient(to right, #2563eb, #059669);
+  
+  --recway-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --recway-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --recway-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --recway-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  --recway-transition: all 0.3s ease;
+  --recway-transition-fast: all 0.2s ease;
+}
+
+/* ===== RESET Y BASE ===== */
+* {
+  box-sizing: border-box;
+}
+
+.recway-home-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--recway-dark);
+  background-color: var(--recway-white);
+}
+
+.recway-main {
+  flex: 1;
+}
+
+.recway-section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.recway-section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #1e3a8a;
+}
+
+.recway-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+/* ===== HERO SECTION ===== */
+.recway-hero-section {
+  position: relative;
+  padding: 8rem 0 5rem 0; /* Agregado padding-top extra para navbar */
+  overflow: hidden;
+  background: var(--recway-gradient-primary);
+  background-size: 400% 400%;
+  animation: recway-gradient 10s ease infinite;
+}
+
+/* Override global text color for hero section - Force white text */
+.recway-hero-section,
+.recway-hero-section *,
+.recway-hero-section .recway-hero-container,
+.recway-hero-section .recway-hero-content,
+.recway-hero-section .recway-hero-text,
+.recway-hero-section .recway-hero-title,
+.recway-hero-section .recway-hero-subtitle,
+.recway-hero-section h1,
+.recway-hero-section h2,
+.recway-hero-section p {
+  color: var(--recway-white) !important;
+}
+
+/* Ultra-specific selectors to override global styles */
+body .recway-hero-section h1,
+body .recway-hero-section h2,
+body .recway-hero-section p,
+body .recway-hero-section .recway-hero-title,
+body .recway-hero-section .recway-hero-subtitle {
+  color: #ffffff !important;
+}
+
+html body .recway-hero-section *[class*="hero"] {
+  color: #ffffff !important;
+}
+
+@keyframes recway-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.recway-hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 15;
+}
+
+.recway-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .recway-hero-content {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.recway-hero-text {
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .recway-hero-text {
+    max-width: 50%;
+  }
+}
+
+.recway-hero-logo {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .recway-hero-logo {
+    justify-content: flex-start;
+  }
+}
+
+.recway-hero-logo-img {
+  height: 8rem;
+  width: auto;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: var(--recway-transition);
+}
+
+.recway-hero-logo-img:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.6));
+}
+
+.recway-logo-animation {
+  animation: recway-scale-in 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes recway-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.recway-hero-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .recway-hero-title {
+    font-size: 3.5rem;
+    text-align: left;
+  }
+}
+
+.recway-hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .recway-hero-subtitle {
+    text-align: left;
+  }
+}
+
+.recway-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .recway-hero-buttons {
+    justify-content: flex-start;
+  }
+}
+
+.recway-hero-video {
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .recway-hero-video {
+    max-width: 50%;
+  }
+}
+
+.recway-hero-video-container {
+  position: relative;
+  width: 30rem;
+  height: 30rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+}
+
+.recway-hero-video-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 1s ease;
+}
+
+.recway-hero-video-element:hover {
+  transform: scale(1.05);
+}
+
+/* ===== BOTONES ===== */
+.recway-btn-primary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--recway-primary);
+  color: var(--recway-white);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--recway-transition);
+}
+
+.recway-btn-primary:hover {
+  background-color: var(--recway-accent);
+  color: var(--recway-white);
+  transform: translateY(-1px);
+  box-shadow: var(--recway-shadow-lg);
+}
+
+.recway-btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: var(--recway-white);
+  font-weight: 500;
+  border: 1px solid var(--recway-white);
+  cursor: pointer;
+  transition: var(--recway-transition);
+}
+
+.recway-btn-secondary:hover {
+  border-color: var(--recway-accent);
+  color: var(--recway-accent);
+  transform: translateY(-1px);
+  box-shadow: var(--recway-shadow-lg);
+}
+
+/* --- HERO BUTTONS: Forzar blanco en texto y borde, incluso en hover/focus --- */
+.recway-hero-buttons .recway-btn-primary,
+.recway-hero-buttons .recway-btn-secondary {
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+.recway-hero-buttons .recway-btn-primary:hover,
+.recway-hero-buttons .recway-btn-secondary:hover,
+.recway-hero-buttons .recway-btn-primary:focus,
+.recway-hero-buttons .recway-btn-secondary:focus {
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+
+.recway-btn-white {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--recway-white);
+  color: var(--recway-primary);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--recway-transition);
+}
+
+.recway-btn-white:hover {
+  background-color: var(--recway-accent);
+  color: var(--recway-white);
+  transform: translateY(-1px);
+  box-shadow: var(--recway-shadow-lg);
+}
+
+.recway-btn-outline-white {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: var(--recway-white);
+  font-weight: 500;
+  border: 1px solid var(--recway-white);
+  cursor: pointer;
+  transition: var(--recway-transition);
+}
+
+.recway-btn-outline-white:hover {
+  border-color: var(--recway-accent);
+  color: var(--recway-accent);
+  transform: translateY(-1px);
+  box-shadow: var(--recway-shadow-lg);
+}
+
+/* ===== FEATURES SECTION ===== */
+.recway-features-section {
+  padding: 5rem 0;
+  background-color: #f9fafb;
+}
+
+.recway-features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .recway-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .recway-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.recway-feature-card {
+  background-color: var(--recway-white);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--recway-shadow-lg);
+  transition: var(--recway-transition);
+}
+
+.recway-feature-card:hover {
+  box-shadow: var(--recway-shadow-xl);
+  transform: translateY(-2px);
+}
+
+.recway-feature-icon {
+  color: var(--recway-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.recway-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--recway-secondary);
+}
+
+.recway-feature-description {
+  color: var(--recway-gray);
+}
+
+/* ===== VIDEO SECTION ===== */
+.recway-video-section {
+  position: relative;
+  padding: 5rem 0;
+  overflow: hidden;
+  background-color: #111827;
+}
+
+.recway-video-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recway-video-container {
+  position: relative;
+  width: 24rem;
+  height: 24rem;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+  animation: recway-glow-pulse 2s infinite;
+}
+
+@media (min-width: 768px) {
+  .recway-video-container {
+    width: 32rem;
+    height: 32rem;
+  }
+}
+
+@keyframes recway-glow-pulse {
+  0% {
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+  }
+  100% {
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.recway-video-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.recway-video-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.recway-video-text {
+  max-width: 48rem;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--recway-white);
+}
+
+.recway-video-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .recway-video-title {
+    font-size: 3rem;
+  }
+}
+
+.recway-video-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== HOW IT WORKS SECTION ===== */
+.recway-how-it-works-section {
+  padding: 5rem 0;
+  background-color: var(--recway-white);
+}
+
+.recway-how-it-works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .recway-how-it-works-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.recway-how-it-works-card {
+  position: relative;
+  height: 16rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--recway-shadow-lg);
+  transition: var(--recway-transition);
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.recway-how-it-works-card:hover {
+  box-shadow: var(--recway-shadow-xl);
+  transform: translateY(-2px);
+}
+
+.recway-card-background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--recway-white);
+}
+
+.recway-card-image {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.recway-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recway-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.recway-how-it-works-card:hover .recway-card-overlay {
+  opacity: 1;
+}
+
+.recway-card-content {
+  position: absolute;
+  inset: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 10;
+}
+
+.recway-card-icon {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.recway-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.recway-card-description {
+  transition: color 0.3s ease;
+}
+
+.recway-workflow-summary {
+  margin-top: 5rem;
+}
+
+.recway-workflow-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--recway-secondary);
+}
+
+.recway-workflow-image {
+  max-width: 48rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--recway-shadow-xl);
+  border: 1px solid var(--recway-accent);
+}
+
+.recway-workflow-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 18.75rem;
+}
+
+.recway-workflow-content {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.recway-workflow-description {
+  color: var(--recway-gray);
+  max-width: 48rem;
+  margin: 0 auto 1.5rem;
+}
+
+/* ===== TEAM SECTION ===== */
+.recway-team-section {
+  padding: 5rem 0;
+  background-color: #f9fafb;
+}
+
+.recway-team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .recway-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.recway-team-card {
+  background-color: var(--recway-white);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--recway-shadow-lg);
+  transition: var(--recway-transition);
+}
+
+.recway-team-card:hover {
+  box-shadow: var(--recway-shadow-xl);
+  transform: translateY(-2px);
+}
+
+.recway-team-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.recway-team-avatar {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 2px solid var(--recway-secondary);
+}
+
+.recway-team-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recway-team-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--recway-secondary);
+  text-align: center;
+}
+
+.recway-team-role {
+  color: var(--recway-primary);
+  font-weight: 500;
+  text-align: center;
+}
+
+.recway-team-description {
+  color: var(--recway-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.recway-team-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.recway-team-email {
+  display: flex;
+  align-items: center;
+}
+
+.recway-linkedin-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #0077B5;
+  color: var(--recway-white);
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: var(--recway-transition);
+}
+
+.recway-linkedin-btn:hover {
+  background-color: #00669c;
+}
+
+.recway-team-cta {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.recway-team-cta-text {
+  font-size: 1.125rem;
+  color: var(--recway-gray);
+  max-width: 48rem;
+  margin: 0 auto 1.5rem;
+}
+
+/* ===== PRICING SECTION ===== */
+.recway-pricing-section {
+  padding: 5rem 0;
+  background-color: var(--recway-white);
+}
+
+.recway-pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .recway-pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.recway-pricing-card {
+  border-radius: 0.5rem;
+  box-shadow: var(--recway-shadow-lg);
+  overflow: hidden;
+  transition: var(--recway-transition);
+  background-color: var(--recway-white);
+}
+
+.recway-pricing-card:hover {
+  box-shadow: var(--recway-shadow-xl);
+}
+
+.recway-pricing-popular {
+  border: 2px solid var(--recway-primary);
+  transform: scale(1);
+}
+
+.recway-pricing-popular:hover {
+  transform: scale(1.05);
+}
+
+.recway-pricing-header {
+  padding: 1.5rem;
+  background-color: #f9fafb;
+}
+
+.recway-pricing-header-popular {
+  background-color: var(--recway-primary);
+  color: var(--recway-white);
+}
+
+.recway-pricing-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.recway-pricing-price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.recway-pricing-period {
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+
+.recway-pricing-description {
+  opacity: 0.8;
+}
+
+.recway-pricing-content {
+  padding: 1.5rem;
+}
+
+.recway-pricing-features {
+  margin-bottom: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.recway-pricing-feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.recway-pricing-check {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #10b981;
+  margin-right: 0.5rem;
+}
+
+.recway-pricing-button {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--recway-transition);
+  background-color: #e5e7eb;
+  color: var(--recway-dark);
+}
+
+.recway-pricing-button:hover {
+  background-color: #d1d5db;
+}
+
+.recway-pricing-button-popular {
+  background-color: var(--recway-primary);
+  color: var(--recway-white);
+}
+
+.recway-pricing-button-popular:hover {
+  background-color: var(--recway-secondary);
+}
+
+/* ===== CTA SECTION ===== */
+.recway-cta-section {
+  padding: 5rem 0;
+  background: var(--recway-gradient-footer);
+  color: var(--recway-white);
+}
+
+.recway-cta-container {
+  text-align: center;
+}
+
+.recway-cta-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.recway-cta-logo-img {
+  height: 4rem;
+  width: auto;
+}
+
+.recway-cta-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .recway-cta-title {
+    font-size: 3rem;
+  }
+}
+
+.recway-cta-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recway-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ===== CONTACT SECTION ===== */
+.recway-contact-section {
+  padding: 4rem 0 6rem;
+  background-color: var(--recway-white);
+}
+
+.recway-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .recway-contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.recway-contact-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--recway-dark);
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .recway-contact-title {
+    font-size: 2.5rem;
+  }
+}
+
+.recway-contact-subtitle {
+  font-size: 1.125rem;
+  color: var(--recway-gray);
+  margin-bottom: 2rem;
+}
+
+.recway-contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.recway-contact-item {
+  display: flex;
+  align-items: center;
+}
+
+.recway-contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #d1fae5;
+  color: #059669;
+  margin-right: 0.75rem;
+}
+
+.recway-contact-label {
+  font-weight: 500;
+  color: var(--recway-dark);
+}
+
+.recway-contact-value {
+  font-size: 0.875rem;
+  color: var(--recway-gray);
+}
+
+.recway-map-container {
+  border-radius: 0.5rem;
+  box-shadow: var(--recway-shadow-xl);
+  overflow: hidden;
+}
+
+/* ===== FOOTER ===== */
+.recway-footer {
+  background-color: var(--recway-dark);
+  color: var(--recway-white);
+  padding: 2rem 0 3rem;
+}
+
+.recway-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.recway-footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .recway-footer-content {
+    flex-direction: row;
+  }
+}
+
+.recway-footer-logo {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .recway-footer-logo {
+    margin-bottom: 0;
+  }
+}
+
+.recway-footer-logo-img {
+  height: 2.5rem;
+  width: auto;
+}
+
+.recway-footer-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.recway-footer-copyright {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 640px) {
+  .recway-section-container {
+    padding: 0 0.75rem;
+  }
+  
+  .recway-section-title {
+    font-size: 2rem;
+  }
+  
+  .recway-hero-title {
+    font-size: 2rem;
+    color: var(--recway-white);
+  }
+  
+  .recway-hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--recway-white);
+  }
+  
+  .recway-hero-video-container {
+    width: 20rem;
+    height: 20rem;
+  }
+  
+  .recway-video-title {
+    font-size: 2rem;
+  }
+  
+  .recway-cta-title {
+    font-size: 2rem;
+  }
+}
+
+/* ===== ANIMACIONES ADICIONALES ===== */
+@keyframes recway-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recway-animate-fade-in {
+  animation: recway-fade-in 0.3s ease-out forwards;
+}
+
+@keyframes recway-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recway-animate-slide-up {
+  animation: recway-slide-up 0.6s ease-out forwards;
+}
+
+/* ===== UTILIDADES ===== */
+.recway-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.recway-text-center {
+  text-align: center;
+}
+
+.recway-mb-4 {
+  margin-bottom: 1rem;
+}
+
+.recway-mt-4 {
+  margin-top: 1rem;
+}
+
+/* ===== ACCESIBILIDAD ===== */
+.recway-btn-primary:focus,
+.recway-btn-secondary:focus,
+.recway-btn-white:focus,
+.recway-btn-outline-white:focus,
+.recway-pricing-button:focus,
+.recway-linkedin-btn:focus {
+  outline: 2px solid var(--recway-accent);
+  outline-offset: 2px;
+}
+
+/* ===== MODO OSCURO (OPCIONAL) ===== */
+@media (prefers-color-scheme: dark) {
+  .recway-home-page {
+    --recway-dark: #f9fafb;
+    --recway-light: #1f2937;
+    --recway-white: #111827;
+    --recway-black: #ffffff;
+  }
+}

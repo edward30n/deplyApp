@@ -1,0 +1,1446 @@
+[
+  {
+    "numero": 0,
+    "id": 675685680019194789,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 15.768,
+    "tipo": "primary",
+    "latitud_origen": 4.6550589,
+    "latitud_destino": 4.6551905,
+    "longitud_origen": -74.055246,
+    "longitud_destino": -74.055193,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.055246,
+        "latitud": 4.6550589
+      },
+      {
+        "orden": 1,
+        "longitud": -74.055193,
+        "latitud": 4.6551905
+      }
+    ],
+    "fecha": "2025-09-02T19:25:19.247000",
+    "IQR": 0.3417697461562921,
+    "iri": 13.782793036120022,
+    "IRI_modificado": 0.002074625031646926,
+    "az": 2.107612384461946,
+    "ax": 0.42104983162506215,
+    "wx": 3.0885841309484863,
+    "huecos": [
+      {
+        "latitud": 4.6550589,
+        "longitud": -74.055246,
+        "magnitud": 3.1218016841849723,
+        "velocidad": 0.0
+      },
+      {
+        "latitud": 4.6550589,
+        "longitud": -74.055246,
+        "magnitud": 3.6142337954321673,
+        "velocidad": 0.0
+      },
+      {
+        "latitud": 4.6550589,
+        "longitud": -74.055246,
+        "magnitud": 3.144170610288776,
+        "velocidad": 3.8012750148773193
+      }
+    ]
+  },
+  {
+    "numero": 1,
+    "id": 10301084427281767296,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 13.601,
+    "tipo": "primary",
+    "latitud_origen": 4.6547804,
+    "latitud_destino": 4.654894,
+    "longitud_origen": -74.0553575,
+    "longitud_destino": -74.055312,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0553575,
+        "latitud": 4.6547804
+      },
+      {
+        "orden": 1,
+        "longitud": -74.055312,
+        "latitud": 4.654894
+      }
+    ],
+    "fecha": "2025-09-02T19:25:24.367000",
+    "IQR": 4.237839673090086,
+    "iri": 1.2087662185356132,
+    "IRI_modificado": 4.69649904861963,
+    "az": 3.3013516682777517,
+    "ax": 0.11132177355547501,
+    "wx": 2.5284471998407083,
+    "huecos": [
+      {
+        "latitud": 4.6547804,
+        "longitud": -74.0553575,
+        "magnitud": 3.044104979352536,
+        "velocidad": 7.448240280151367
+      }
+    ]
+  },
+  {
+    "numero": 2,
+    "id": 9360962475305578257,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 60.041,
+    "tipo": "primary",
+    "latitud_origen": 4.6540837,
+    "latitud_destino": 4.6545745,
+    "longitud_origen": -74.0556657,
+    "longitud_destino": -74.0554399,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0556657,
+        "latitud": 4.6540837
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0554805,
+        "latitud": 4.6544818
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0554399,
+        "latitud": 4.6545745
+      }
+    ],
+    "fecha": "2025-09-02T19:25:28.248000",
+    "IQR": 4.9374852422772655,
+    "iri": 0.10417667735917306,
+    "IRI_modificado": 4.979388399193012,
+    "az": 4.567941543591699,
+    "ax": 3.7854885268500147,
+    "wx": 4.1497496270398235,
+    "huecos": []
+  },
+  {
+    "numero": 3,
+    "id": 9360891979499903884,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 58.044000000000004,
+    "tipo": "primary",
+    "latitud_origen": 4.6536251,
+    "latitud_destino": 4.6540837,
+    "longitud_origen": -74.0559156,
+    "longitud_destino": -74.0556657,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0559156,
+        "latitud": 4.6536251
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0558421,
+        "latitud": 4.6537492
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0556657,
+        "latitud": 4.6540837
+      }
+    ],
+    "fecha": "2025-09-02T19:25:35.247000",
+    "IQR": 4.877060154717797,
+    "iri": 0.5087568661433087,
+    "IRI_modificado": 4.899939638826054,
+    "az": 4.848914359302507,
+    "ax": 3.961140595673106,
+    "wx": 4.417993382821303,
+    "huecos": []
+  },
+  {
+    "numero": 4,
+    "id": 10454560761015465136,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 57.49581139409014,
+    "tipo": "primary",
+    "latitud_origen": 4.653180759991686,
+    "latitud_destino": 4.6536251,
+    "longitud_origen": -74.05617889682652,
+    "longitud_destino": -74.0559156,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05617889682652,
+        "latitud": 4.653180759991686
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0559156,
+        "latitud": 4.6536251
+      }
+    ],
+    "fecha": "2025-09-02T19:25:41.247000",
+    "IQR": 4.919078998359453,
+    "iri": 0.27943352529377213,
+    "IRI_modificado": 4.947794550497334,
+    "az": 4.840950405416337,
+    "ax": 3.8068812340533595,
+    "wx": 4.394951139149228,
+    "huecos": []
+  },
+  {
+    "numero": 5,
+    "id": 10454560761015504472,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 57.49581139409014,
+    "tipo": "primary",
+    "latitud_origen": 4.6527407,
+    "latitud_destino": 4.653180759991686,
+    "longitud_origen": -74.0564492,
+    "longitud_destino": -74.05617889682652,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0564492,
+        "latitud": 4.6527407
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0562866,
+        "latitud": 4.652999
+      },
+      {
+        "orden": 2,
+        "longitud": -74.05617889682652,
+        "latitud": 4.653180759991686
+      }
+    ],
+    "fecha": "2025-09-02T19:25:59.288000",
+    "IQR": 4.361481218940903,
+    "iri": 1.9121956507304816,
+    "IRI_modificado": 4.376363059025251,
+    "az": 3.884261409164744,
+    "ax": 3.864689548533243,
+    "wx": 4.541518549282927,
+    "huecos": [
+      {
+        "latitud": 4.6527407,
+        "longitud": -74.0564492,
+        "magnitud": 5.266694046912398,
+        "velocidad": 7.108692646026611
+      },
+      {
+        "latitud": 4.6527407,
+        "longitud": -74.0564492,
+        "magnitud": 3.839272304681011,
+        "velocidad": 1.058529019355774
+      }
+    ]
+  },
+  {
+    "numero": 6,
+    "id": 708668272445940236,
+    "nombre": "Calle 70",
+    "longitud": 47.914,
+    "tipo": "residential",
+    "latitud_origen": 4.6528044,
+    "latitud_destino": 4.6530459,
+    "longitud_origen": -74.0565386,
+    "longitud_destino": -74.0568965,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0565386,
+        "latitud": 4.6528044
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0566008,
+        "latitud": 4.6528487
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0566952,
+        "latitud": 4.652916
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0567846,
+        "latitud": 4.6529749
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0568965,
+        "latitud": 4.6530459
+      }
+    ],
+    "fecha": "2025-09-02T19:26:43.247000",
+    "IQR": 1.0129038315022467,
+    "iri": 6.099252056585927,
+    "IRI_modificado": 0.8173085292942011,
+    "az": 2.2148388366567024,
+    "ax": 0.1915353478546562,
+    "wx": 3.4723150911368936,
+    "huecos": [
+      {
+        "latitud": 4.6528044,
+        "longitud": -74.0565386,
+        "magnitud": 5.485887742095479,
+        "velocidad": 0.0001046885226969
+      },
+      {
+        "latitud": 4.6528044,
+        "longitud": -74.0565386,
+        "magnitud": 7.920973074752133,
+        "velocidad": 0.4920061230659485
+      }
+    ]
+  },
+  {
+    "numero": 7,
+    "id": 6538522133263410686,
+    "nombre": "Calle 70",
+    "longitud": 13.436,
+    "tipo": "residential",
+    "latitud_origen": 4.6530459,
+    "latitud_destino": 4.6531109,
+    "longitud_origen": -74.0568965,
+    "longitud_destino": -74.0569987,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0568965,
+        "latitud": 4.6530459
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0569987,
+        "latitud": 4.6531109
+      }
+    ],
+    "fecha": "2025-09-02T19:26:48.247000",
+    "IQR": 3.9339209537108397,
+    "iri": 1.6537979019891647,
+    "IRI_modificado": 4.509761092841171,
+    "az": 2.155940748850485,
+    "ax": 0.0742105255812282,
+    "wx": 2.863662181655742,
+    "huecos": []
+  },
+  {
+    "numero": 8,
+    "id": 708668272445940236,
+    "nombre": "Calle 70",
+    "longitud": 47.914,
+    "tipo": "residential",
+    "latitud_origen": 4.6528044,
+    "latitud_destino": 4.6530459,
+    "longitud_origen": -74.0565386,
+    "longitud_destino": -74.0568965,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0565386,
+        "latitud": 4.6528044
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0566008,
+        "latitud": 4.6528487
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0566952,
+        "latitud": 4.652916
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0567846,
+        "latitud": 4.6529749
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0568965,
+        "latitud": 4.6530459
+      }
+    ],
+    "fecha": "2025-09-02T19:26:57.247000",
+    "IQR": 3.6552827071934573,
+    "iri": 2.6680684408633426,
+    "IRI_modificado": 3.867493876215117,
+    "az": 3.2981925418380493,
+    "ax": 0.09341873377075327,
+    "wx": 3.539436221617926,
+    "huecos": []
+  },
+  {
+    "numero": 9,
+    "id": 708324800486709730,
+    "nombre": "Calle 70",
+    "longitud": 12.18,
+    "tipo": "residential",
+    "latitud_origen": 4.6527407,
+    "latitud_destino": 4.6528044,
+    "longitud_origen": -74.0564492,
+    "longitud_destino": -74.0565386,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0564492,
+        "latitud": 4.6527407
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0565191,
+        "latitud": 4.6527905
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0565386,
+        "latitud": 4.6528044
+      }
+    ],
+    "fecha": "2025-09-02T19:27:23.247000",
+    "IQR": 0.3436733798869207,
+    "iri": 18.07987265656182,
+    "IRI_modificado": 6.670355371691805e-05,
+    "az": 0.7223003605728611,
+    "ax": 0.0635216011745321,
+    "wx": 2.5522770878002814,
+    "huecos": [
+      {
+        "latitud": 4.6527407,
+        "longitud": -74.0564492,
+        "magnitud": 3.04896284488023,
+        "velocidad": 1.8472816944122317
+      },
+      {
+        "latitud": 4.6527407,
+        "longitud": -74.0564492,
+        "magnitud": 3.158065509637445,
+        "velocidad": 2.859052419662476
+      }
+    ]
+  },
+  {
+    "numero": 10,
+    "id": 10454560761015504472,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 57.49581139409014,
+    "tipo": "primary",
+    "latitud_origen": 4.6527407,
+    "latitud_destino": 4.653180759991686,
+    "longitud_origen": -74.0564492,
+    "longitud_destino": -74.05617889682652,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0564492,
+        "latitud": 4.6527407
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0562866,
+        "latitud": 4.652999
+      },
+      {
+        "orden": 2,
+        "longitud": -74.05617889682652,
+        "latitud": 4.653180759991686
+      }
+    ],
+    "fecha": "2025-09-02T19:27:28.247000",
+    "IQR": 4.801700456814655,
+    "iri": 0.25197465985089773,
+    "IRI_modificado": 4.953014086532579,
+    "az": 4.738858409920774,
+    "ax": 0.10561228311285475,
+    "wx": 4.603958553017412,
+    "huecos": []
+  },
+  {
+    "numero": 11,
+    "id": 10454560761015465136,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 57.49581139409014,
+    "tipo": "primary",
+    "latitud_origen": 4.653180759991686,
+    "latitud_destino": 4.6536251,
+    "longitud_origen": -74.05617889682652,
+    "longitud_destino": -74.0559156,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05617889682652,
+        "latitud": 4.653180759991686
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0559156,
+        "latitud": 4.6536251
+      }
+    ],
+    "fecha": "2025-09-02T19:27:31.207000",
+    "IQR": 4.954045163184498,
+    "iri": 0.14807542873860532,
+    "IRI_modificado": 4.971849057885236,
+    "az": 4.9269,
+    "ax": 3.934475228347023,
+    "wx": 4.834197393151503,
+    "huecos": []
+  },
+  {
+    "numero": 12,
+    "id": 9360891979499903884,
+    "nombre": "Avenida Carrera 7",
+    "longitud": 58.044000000000004,
+    "tipo": "primary",
+    "latitud_origen": 4.6536251,
+    "latitud_destino": 4.6540837,
+    "longitud_origen": -74.0559156,
+    "longitud_destino": -74.0556657,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0559156,
+        "latitud": 4.6536251
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0558421,
+        "latitud": 4.6537492
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0556657,
+        "latitud": 4.6540837
+      }
+    ],
+    "fecha": "2025-09-02T19:27:41.247000",
+    "IQR": 4.705847531561678,
+    "iri": 0.550192607867146,
+    "IRI_modificado": 4.890428438999778,
+    "az": 4.2982844072611215,
+    "ax": 0.26123687541032314,
+    "wx": 4.240071285941003,
+    "huecos": []
+  },
+  {
+    "numero": 13,
+    "id": 826645937678832791,
+    "nombre": "Calle 70A",
+    "longitud": 92.19702024680251,
+    "tipo": "residential",
+    "latitud_origen": 4.6536251,
+    "latitud_destino": 4.653194672559802,
+    "longitud_origen": -74.0559156,
+    "longitud_destino": -74.05520801671375,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0559156,
+        "latitud": 4.6536251
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0558523,
+        "latitud": 4.6535865
+      },
+      {
+        "orden": 2,
+        "longitud": -74.05520801671375,
+        "latitud": 4.653194672559802
+      }
+    ],
+    "fecha": "2025-09-02T19:27:49.247000",
+    "IQR": 4.208966352032251,
+    "iri": 1.372059919337657,
+    "IRI_modificado": 4.6338841999880485,
+    "az": 3.128638949022121,
+    "ax": 0.12288864535547628,
+    "wx": 2.8417793905135125,
+    "huecos": []
+  },
+  {
+    "numero": 14,
+    "id": 826645937678757503,
+    "nombre": "Calle 70A",
+    "longitud": 92.19702024680251,
+    "tipo": "residential",
+    "latitud_origen": 4.653194672559802,
+    "latitud_destino": 4.6527643,
+    "longitud_origen": -74.05520801671375,
+    "longitud_destino": -74.0545004,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05520801671375,
+        "latitud": 4.653194672559802
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0545288,
+        "latitud": 4.6527816
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0545004,
+        "latitud": 4.6527643
+      }
+    ],
+    "fecha": "2025-09-02T19:27:58.287000",
+    "IQR": 4.6235588627038045,
+    "iri": 1.048899837082662,
+    "IRI_modificado": 4.751734841162349,
+    "az": 3.8503902799102887,
+    "ax": 1.7988614376104923,
+    "wx": 3.922483272901535,
+    "huecos": [
+      {
+        "latitud": 4.6527643,
+        "longitud": -74.0545004,
+        "magnitud": 3.103096639148813,
+        "velocidad": 7.557051658630371
+      }
+    ]
+  },
+  {
+    "numero": 15,
+    "id": 826430618503670770,
+    "nombre": "Carrera 5",
+    "longitud": 51.766999999999996,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6527643,
+    "latitud_destino": 4.6523686,
+    "longitud_origen": -74.0545004,
+    "longitud_destino": -74.0547465,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0545004,
+        "latitud": 4.6527643
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0545178,
+        "latitud": 4.6527363
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0546817,
+        "latitud": 4.6524729
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0547465,
+        "latitud": 4.6523686
+      }
+    ],
+    "fecha": "2025-09-02T19:28:39.247000",
+    "IQR": 0.31686596489477803,
+    "iri": 15.435237339680642,
+    "IRI_modificado": 0.0005532848150655135,
+    "az": 0.008211480084050926,
+    "ax": 0.12039999354102005,
+    "wx": 2.498778979422217,
+    "huecos": [
+      {
+        "latitud": 4.6523686,
+        "longitud": -74.0547465,
+        "magnitud": 4.0399757592458405,
+        "velocidad": 4.520717620849609
+      },
+      {
+        "latitud": 4.6523686,
+        "longitud": -74.0547465,
+        "magnitud": 3.042861725197681,
+        "velocidad": 4.5603108406066895
+      },
+      {
+        "latitud": 4.6523686,
+        "longitud": -74.0547465,
+        "magnitud": 3.5625426324567675,
+        "velocidad": 4.813190460205078
+      },
+      {
+        "latitud": 4.6523686,
+        "longitud": -74.0547465,
+        "magnitud": 5.314058802648716,
+        "velocidad": 4.26382303237915
+      },
+      {
+        "latitud": 4.6523686,
+        "longitud": -74.0547465,
+        "magnitud": 3.070438670862675,
+        "velocidad": 0.1673710793256759
+      },
+      {
+        "latitud": 4.6523686,
+        "longitud": -74.0547465,
+        "magnitud": 3.479164103377017,
+        "velocidad": 0.0010120314545929
+      },
+      {
+        "latitud": 4.6523686,
+        "longitud": -74.0547465,
+        "magnitud": 8.535800768576523,
+        "velocidad": 0.0044088875874876
+      }
+    ]
+  },
+  {
+    "numero": 16,
+    "id": 826430619076245544,
+    "nombre": "Carrera 5",
+    "longitud": 64.856,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6523686,
+    "latitud_destino": 4.6518729,
+    "longitud_origen": -74.0547465,
+    "longitud_destino": -74.0550549,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0547465,
+        "latitud": 4.6523686
+      },
+      {
+        "orden": 1,
+        "longitud": -74.054798,
+        "latitud": 4.6522859
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0550339,
+        "latitud": 4.6519066
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0550549,
+        "latitud": 4.6518729
+      }
+    ],
+    "fecha": "2025-09-02T19:28:42.250000",
+    "IQR": 4.673831662832882,
+    "iri": 0.36472291775201526,
+    "IRI_modificado": 4.93090712370116,
+    "az": 4.227999975388062,
+    "ax": 0.26574777495755875,
+    "wx": 3.4072047092298448,
+    "huecos": []
+  },
+  {
+    "numero": 17,
+    "id": 703354039067142180,
+    "nombre": "Carrera 5",
+    "longitud": 56.147999999999996,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6518729,
+    "latitud_destino": 4.6514437,
+    "longitud_origen": -74.0550549,
+    "longitud_destino": -74.0553218,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0550549,
+        "latitud": 4.6518729
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0552908,
+        "latitud": 4.6514936
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0553218,
+        "latitud": 4.6514437
+      }
+    ],
+    "fecha": "2025-09-02T19:28:53.247000",
+    "IQR": 3.508983372584097,
+    "iri": 2.62854679088613,
+    "IRI_modificado": 3.898586009431971,
+    "az": 2.4513039125133687,
+    "ax": 0.4760585721643391,
+    "wx": 2.543624083224665,
+    "huecos": [
+      {
+        "latitud": 4.6514437,
+        "longitud": -74.0553218,
+        "magnitud": 5.9496859639245105,
+        "velocidad": 5.687406539916992
+      }
+    ]
+  },
+  {
+    "numero": 18,
+    "id": 703560162757506222,
+    "nombre": "Carrera 5",
+    "longitud": 23.737,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6514437,
+    "latitud_destino": 4.6512623,
+    "longitud_origen": -74.0553218,
+    "longitud_destino": -74.0554347,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0553218,
+        "latitud": 4.6514437
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0554347,
+        "latitud": 4.6512623
+      }
+    ],
+    "fecha": "2025-09-02T19:29:01.247000",
+    "IQR": 1.6044563262829377,
+    "iri": 4.65613395321399,
+    "IRI_modificado": 1.932868562288195,
+    "az": 1.4122829839875086,
+    "ax": 0.12648867514893247,
+    "wx": 1.3658040774750675,
+    "huecos": [
+      {
+        "latitud": 4.6512623,
+        "longitud": -74.0554347,
+        "magnitud": 3.285535453917133,
+        "velocidad": 6.388839244842529
+      }
+    ]
+  },
+  {
+    "numero": 19,
+    "id": 1155538779183328829,
+    "nombre": "Carrera 5",
+    "longitud": 40.525000000000006,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6512623,
+    "latitud_destino": 4.6509589,
+    "longitud_origen": -74.0554347,
+    "longitud_destino": -74.0556296,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0554347,
+        "latitud": 4.6512623
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0554846,
+        "latitud": 4.6511444
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0555385,
+        "latitud": 4.6510552
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0555724,
+        "latitud": 4.6510192
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0556296,
+        "latitud": 4.6509589
+      }
+    ],
+    "fecha": "2025-09-02T19:29:05.207000",
+    "IQR": 4.66010582028404,
+    "iri": 0.5516200861811229,
+    "IRI_modificado": 4.890095792783158,
+    "az": 4.110844738977869,
+    "ax": 0.1641552475861685,
+    "wx": 3.8964004947912936,
+    "huecos": []
+  },
+  {
+    "numero": 20,
+    "id": 703348467846894953,
+    "nombre": "Carrera 5",
+    "longitud": 38.702,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6509589,
+    "latitud_destino": 4.6506263,
+    "longitud_origen": -74.0556296,
+    "longitud_destino": -74.0556932,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0556296,
+        "latitud": 4.6509589
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0556723,
+        "latitud": 4.6508734
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0556892,
+        "latitud": 4.6508214
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0557022,
+        "latitud": 4.6507596
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0557051,
+        "latitud": 4.6507131
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0557066,
+        "latitud": 4.6506948
+      },
+      {
+        "orden": 6,
+        "longitud": -74.0556932,
+        "latitud": 4.6506263
+      }
+    ],
+    "fecha": "2025-09-02T19:29:14.247000",
+    "IQR": 2.51901203808328,
+    "iri": 3.1098291342118705,
+    "IRI_modificado": 3.4885402175282922,
+    "az": 1.0152361584450573,
+    "ax": 0.11258880240513225,
+    "wx": 1.4210417522099483,
+    "huecos": []
+  },
+  {
+    "numero": 21,
+    "id": 703238471140994958,
+    "nombre": [
+      "Carrera 4A",
+      "Carrera 5"
+    ],
+    "longitud": 49.941,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6506263,
+    "latitud_destino": 4.6502025,
+    "longitud_origen": -74.0556932,
+    "longitud_destino": -74.0555637,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0556932,
+        "latitud": 4.6506263
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0555781,
+        "latitud": 4.650346
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0555652,
+        "latitud": 4.6503047
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0555583,
+        "latitud": 4.6502633
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0555637,
+        "latitud": 4.6502025
+      }
+    ],
+    "fecha": "2025-09-02T19:29:20.247000",
+    "IQR": 2.409984800533919,
+    "iri": 3.8717858377996337,
+    "IRI_modificado": 2.7332259446756058,
+    "az": 1.3265849885010192,
+    "ax": 0.10058843074487189,
+    "wx": 2.856195551088746,
+    "huecos": []
+  },
+  {
+    "numero": 22,
+    "id": 830020141639807565,
+    "nombre": "Calle 68",
+    "longitud": 78.775,
+    "tipo": "residential",
+    "latitud_origen": 4.6502025,
+    "latitud_destino": 4.6498139,
+    "longitud_origen": -74.0555637,
+    "longitud_destino": -74.0549694,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0555637,
+        "latitud": 4.6502025
+      },
+      {
+        "orden": 1,
+        "longitud": -74.055539,
+        "latitud": 4.6501863
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0550401,
+        "latitud": 4.6498601
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0549694,
+        "latitud": 4.6498139
+      }
+    ],
+    "fecha": "2025-09-02T19:29:30.247000",
+    "IQR": 3.835203398489308,
+    "iri": 2.0336281402296637,
+    "IRI_modificado": 4.3067686033631185,
+    "az": 2.7708461072736688,
+    "ax": 0.18446561468151046,
+    "wx": 2.4843723921111227,
+    "huecos": [
+      {
+        "latitud": 4.6498139,
+        "longitud": -74.0549694,
+        "magnitud": 4.07136889842496,
+        "velocidad": 6.606491565704346
+      }
+    ]
+  },
+  {
+    "numero": 23,
+    "id": 826431867074066481,
+    "nombre": "Carrera 4",
+    "longitud": 53.418,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6498139,
+    "latitud_destino": 4.6502221,
+    "longitud_origen": -74.0549694,
+    "longitud_destino": -74.0547153,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0549694,
+        "latitud": 4.6498139
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0547422,
+        "latitud": 4.6501773
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0547314,
+        "latitud": 4.6501963
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0547153,
+        "latitud": 4.6502221
+      }
+    ],
+    "fecha": "2025-09-02T19:29:50.247000",
+    "IQR": 1.6494780655091987,
+    "iri": 4.871079721759051,
+    "IRI_modificado": 1.729041262788553,
+    "az": 1.686207924779736,
+    "ax": 0.1417073365371877,
+    "wx": 2.406336194839649,
+    "huecos": [
+      {
+        "latitud": 4.6498139,
+        "longitud": -74.0549694,
+        "magnitud": 3.3822881376111247,
+        "velocidad": 2.1618714332580566
+      }
+    ]
+  },
+  {
+    "numero": 24,
+    "id": 826579559455008578,
+    "nombre": "Carrera 4",
+    "longitud": 17.333,
+    "tipo": "tertiary",
+    "latitud_origen": 4.6502221,
+    "latitud_destino": 4.6503523,
+    "longitud_origen": -74.0547153,
+    "longitud_destino": -74.0546293,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0547153,
+        "latitud": 4.6502221
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0546293,
+        "latitud": 4.6503523
+      }
+    ],
+    "fecha": "2025-09-02T19:29:55.247000",
+    "IQR": 1.0023598620867773,
+    "iri": 5.455510619600925,
+    "IRI_modificado": 1.2369092404221411,
+    "az": 0.008211480792479797,
+    "ax": 0.05316146019554413,
+    "wx": 1.931538805050787,
+    "huecos": []
+  },
+  {
+    "numero": 25,
+    "id": 7468121857791467767,
+    "nombre": "Transversal 2A",
+    "longitud": 82.50498692209769,
+    "tipo": "residential",
+    "latitud_origen": 4.6500607,
+    "latitud_destino": 4.64935404665771,
+    "longitud_origen": -74.0544655,
+    "longitud_destino": -74.05461445487998,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0544655,
+        "latitud": 4.6500607
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0544474,
+        "latitud": 4.6499722
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0544414,
+        "latitud": 4.6498899
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0544439,
+        "latitud": 4.6498254
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0544537,
+        "latitud": 4.6497562
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0544727,
+        "latitud": 4.6496822
+      },
+      {
+        "orden": 6,
+        "longitud": -74.05461445487998,
+        "latitud": 4.64935404665771
+      }
+    ],
+    "fecha": "2025-09-02T19:30:02.251000",
+    "IQR": 3.594284255558694,
+    "iri": 2.2963046478926055,
+    "IRI_modificado": 4.140446704494961,
+    "az": 2.403516911948924,
+    "ax": 0.08210060462214219,
+    "wx": 2.368718559367733,
+    "huecos": []
+  },
+  {
+    "numero": 26,
+    "id": 7468121857791416863,
+    "nombre": "Transversal 2A",
+    "longitud": 82.50498692209769,
+    "tipo": "residential",
+    "latitud_origen": 4.64935404665771,
+    "latitud_destino": 4.6486715,
+    "longitud_origen": -74.05461445487998,
+    "longitud_destino": -74.0546168,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05461445487998,
+        "latitud": 4.64935404665771
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0546575,
+        "latitud": 4.6492544
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0547153,
+        "latitud": 4.6490882
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0547395,
+        "latitud": 4.6488807
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0547119,
+        "latitud": 4.648786
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0546751,
+        "latitud": 4.648735
+      },
+      {
+        "orden": 6,
+        "longitud": -74.0546168,
+        "latitud": 4.6486715
+      }
+    ],
+    "fecha": "2025-09-02T19:30:15.248000",
+    "IQR": 2.938794095332863,
+    "iri": 3.328268455269242,
+    "IRI_modificado": 3.282260527367427,
+    "az": 2.7717707584298132,
+    "ax": 0.1421527318574185,
+    "wx": 2.050465109611583,
+    "huecos": [
+      {
+        "latitud": 4.6486715,
+        "longitud": -74.0546168,
+        "magnitud": 3.1474047675747387,
+        "velocidad": 6.405312538146973
+      }
+    ]
+  },
+  {
+    "numero": 27,
+    "id": 1167399669631444928,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159497,
+    "tipo": "residential",
+    "latitud_origen": 4.6486715,
+    "latitud_destino": 4.648993987526865,
+    "longitud_origen": -74.0546168,
+    "longitud_destino": -74.05422448525108,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0546168,
+        "latitud": 4.6486715
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0545504,
+        "latitud": 4.6486381
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0544739,
+        "latitud": 4.6486254
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0543908,
+        "latitud": 4.6486394
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0543271,
+        "latitud": 4.6486749
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0542531,
+        "latitud": 4.6487615
+      },
+      {
+        "orden": 6,
+        "longitud": -74.0542285,
+        "latitud": 4.6488232
+      },
+      {
+        "orden": 7,
+        "longitud": -74.0542185,
+        "latitud": 4.6489054
+      },
+      {
+        "orden": 8,
+        "longitud": -74.05422448525108,
+        "latitud": 4.648993987526865
+      }
+    ],
+    "fecha": "2025-09-02T19:30:28.247000",
+    "IQR": 2.920946616762614,
+    "iri": 3.3760121683711732,
+    "IRI_modificado": 3.2357989127441322,
+    "az": 2.1976271595524475,
+    "ax": 0.17726297612443176,
+    "wx": 2.719560630880652,
+    "huecos": []
+  },
+  {
+    "numero": 28,
+    "id": 1167399669631491368,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159497,
+    "tipo": "residential",
+    "latitud_origen": 4.648993987526865,
+    "latitud_destino": 4.649629603999761,
+    "longitud_origen": -74.05422448525108,
+    "longitud_destino": -74.054163438792,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05422448525108,
+        "latitud": 4.648993987526865
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0542391,
+        "latitud": 4.6492103
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0542705,
+        "latitud": 4.6493646
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0542179,
+        "latitud": 4.6495249
+      },
+      {
+        "orden": 4,
+        "longitud": -74.054163438792,
+        "latitud": 4.649629603999761
+      }
+    ],
+    "fecha": "2025-09-02T19:30:39.247000",
+    "IQR": 3.7496507074284473,
+    "iri": 2.094044981438832,
+    "IRI_modificado": 4.270442462199106,
+    "az": 2.5776551042835614,
+    "ax": 0.24201299638558282,
+    "wx": 2.306028625974255,
+    "huecos": []
+  },
+  {
+    "numero": 29,
+    "id": 1167399669631324688,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159497,
+    "tipo": "residential",
+    "latitud_origen": 4.649629603999761,
+    "latitud_destino": 4.6499095,
+    "longitud_origen": -74.054163438792,
+    "longitud_destino": -74.0537111,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.054163438792,
+        "latitud": 4.649629603999761
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0540307,
+        "latitud": 4.6498848
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0539762,
+        "latitud": 4.6499534
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0539286,
+        "latitud": 4.6499738
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0538479,
+        "latitud": 4.6499754
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0537614,
+        "latitud": 4.6499449
+      },
+      {
+        "orden": 6,
+        "longitud": -74.0537111,
+        "latitud": 4.6499095
+      }
+    ],
+    "fecha": "2025-09-02T19:30:50.207000",
+    "IQR": 3.456395356953544,
+    "iri": 2.7905538185346317,
+    "IRI_modificado": 3.768087842597032,
+    "az": 3.0535103336614755,
+    "ax": 0.19141056262099276,
+    "wx": 2.617924126515303,
+    "huecos": [
+      {
+        "latitud": 4.6486394,
+        "longitud": -74.0543908,
+        "magnitud": 3.296713021591377,
+        "velocidad": 6.765157222747803
+      }
+    ]
+  },
+  {
+    "numero": 30,
+    "id": 826420282990586281,
+    "nombre": "Transversal 1A",
+    "longitud": 55.13490886430624,
+    "tipo": "residential",
+    "latitud_origen": 4.6499095,
+    "latitud_destino": 4.6502125203051365,
+    "longitud_origen": -74.0537111,
+    "longitud_destino": -74.05333195161023,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0537111,
+        "latitud": 4.6499095
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0536497,
+        "latitud": 4.6499213
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0535449,
+        "latitud": 4.6500097
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0534048,
+        "latitud": 4.6501226
+      },
+      {
+        "orden": 4,
+        "longitud": -74.05333195161023,
+        "latitud": 4.6502125203051365
+      }
+    ],
+    "fecha": "2025-09-02T19:31:07.247000",
+    "IQR": 0.3049691557381057,
+    "iri": 10.876890712969065,
+    "IRI_modificado": 0.02113285720223872,
+    "az": 0.551500440135924,
+    "ax": 0.07359512797979217,
+    "wx": 1.6168873001100932,
+    "huecos": [
+      {
+        "latitud": 4.6499213,
+        "longitud": -74.0536497,
+        "magnitud": 3.1733357920956604,
+        "velocidad": 5.918875694274902
+      },
+      {
+        "latitud": 4.6499213,
+        "longitud": -74.0536497,
+        "magnitud": 3.4086381197106568,
+        "velocidad": 4.935427188873291
+      }
+    ]
+  }
+]

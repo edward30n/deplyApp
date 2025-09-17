@@ -1,0 +1,608 @@
+[
+  {
+    "numero": 0,
+    "id": 1167399669631444928,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159495,
+    "tipo": "residential",
+    "latitud_origen": 4.6499095,
+    "latitud_destino": 4.649629603999761,
+    "longitud_origen": -74.0537111,
+    "longitud_destino": -74.054163438792,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0537111,
+        "latitud": 4.6499095
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0537614,
+        "latitud": 4.6499449
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0538479,
+        "latitud": 4.6499754
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0539286,
+        "latitud": 4.6499738
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0539762,
+        "latitud": 4.6499534
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0540307,
+        "latitud": 4.6498848
+      },
+      {
+        "orden": 6,
+        "longitud": -74.054163438792,
+        "latitud": 4.649629603999761
+      }
+    ],
+    "fecha": "2025-08-11T09:16:16.131000",
+    "IQR": 2.67,
+    "iri": 0.104,
+    "IRI_modificado": 1.418,
+    "az": 3.826,
+    "ax": 2.583,
+    "wx": 4.629,
+    "huecos": [
+      {
+        "latitud": 4.6499095,
+        "longitud": -74.0537111,
+        "magnitud": 2.901,
+        "velocidad": 2.536
+      },
+      {
+        "latitud": 4.649629603999761,
+        "longitud": -74.054163438792,
+        "magnitud": 1.528,
+        "velocidad": 0.712
+      }
+    ]
+  },
+  {
+    "numero": 1,
+    "id": 1167399669631491368,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159495,
+    "tipo": "residential",
+    "latitud_origen": 4.649629603999761,
+    "latitud_destino": 4.648993987526865,
+    "longitud_origen": -74.054163438792,
+    "longitud_destino": -74.05422448525108,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.054163438792,
+        "latitud": 4.649629603999761
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0542179,
+        "latitud": 4.6495249
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0542705,
+        "latitud": 4.6493646
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0542391,
+        "latitud": 4.6492103
+      },
+      {
+        "orden": 4,
+        "longitud": -74.05422448525108,
+        "latitud": 4.648993987526865
+      }
+    ],
+    "fecha": "2025-08-11T09:16:21.130000",
+    "IQR": 1.353,
+    "iri": 15.095,
+    "IRI_modificado": 2.373,
+    "az": 2.59,
+    "ax": 0.447,
+    "wx": 2.387,
+    "huecos": [
+      {
+        "latitud": 4.649629603999761,
+        "longitud": -74.054163438792,
+        "magnitud": 4.736,
+        "velocidad": 3.005
+      },
+      {
+        "latitud": 4.648993987526865,
+        "longitud": -74.05422448525108,
+        "magnitud": 1.679,
+        "velocidad": 0.138
+      }
+    ]
+  },
+  {
+    "numero": 2,
+    "id": 1167399669631324688,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159495,
+    "tipo": "residential",
+    "latitud_origen": 4.648993987526865,
+    "latitud_destino": 4.6486715,
+    "longitud_origen": -74.05422448525108,
+    "longitud_destino": -74.0546168,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05422448525108,
+        "latitud": 4.648993987526865
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0542185,
+        "latitud": 4.6489054
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0542285,
+        "latitud": 4.6488232
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0542531,
+        "latitud": 4.6487615
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0543271,
+        "latitud": 4.6486749
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0543908,
+        "latitud": 4.6486394
+      },
+      {
+        "orden": 6,
+        "longitud": -74.0544739,
+        "latitud": 4.6486254
+      },
+      {
+        "orden": 7,
+        "longitud": -74.0545504,
+        "latitud": 4.6486381
+      },
+      {
+        "orden": 8,
+        "longitud": -74.0546168,
+        "latitud": 4.6486715
+      }
+    ],
+    "fecha": "2025-08-11T09:16:36.032000",
+    "IQR": 2.23,
+    "iri": 15.251,
+    "IRI_modificado": 1.235,
+    "az": 1.397,
+    "ax": 1.274,
+    "wx": 4.023,
+    "huecos": [
+      {
+        "latitud": 4.648993987526865,
+        "longitud": -74.05422448525108,
+        "magnitud": 0.96,
+        "velocidad": 2.832
+      },
+      {
+        "latitud": 4.6486715,
+        "longitud": -74.0546168,
+        "magnitud": 4.078,
+        "velocidad": 0.177
+      }
+    ]
+  },
+  {
+    "numero": 3,
+    "id": 7468121857791467767,
+    "nombre": "Transversal 2A",
+    "longitud": 82.50498692209769,
+    "tipo": "residential",
+    "latitud_origen": 4.6486715,
+    "latitud_destino": 4.64935404665771,
+    "longitud_origen": -74.0546168,
+    "longitud_destino": -74.05461445487998,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0546168,
+        "latitud": 4.6486715
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0546751,
+        "latitud": 4.648735
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0547119,
+        "latitud": 4.648786
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0547395,
+        "latitud": 4.6488807
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0547153,
+        "latitud": 4.6490882
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0546575,
+        "latitud": 4.6492544
+      },
+      {
+        "orden": 6,
+        "longitud": -74.05461445487998,
+        "latitud": 4.64935404665771
+      }
+    ],
+    "fecha": "2025-08-11T09:16:51.030000",
+    "IQR": 3.138,
+    "iri": 15.069,
+    "IRI_modificado": 1.672,
+    "az": 3.801,
+    "ax": 4.996,
+    "wx": 4.109,
+    "huecos": [
+      {
+        "latitud": 4.6486715,
+        "longitud": -74.0546168,
+        "magnitud": 0.082,
+        "velocidad": 3.963
+      },
+      {
+        "latitud": 4.64935404665771,
+        "longitud": -74.05461445487998,
+        "magnitud": 1.21,
+        "velocidad": 3.319
+      }
+    ]
+  },
+  {
+    "numero": 4,
+    "id": 7468121857791416863,
+    "nombre": "Transversal 2A",
+    "longitud": 82.50498692209769,
+    "tipo": "residential",
+    "latitud_origen": 4.64935404665771,
+    "latitud_destino": 4.6500607,
+    "longitud_origen": -74.05461445487998,
+    "longitud_destino": -74.0544655,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05461445487998,
+        "latitud": 4.64935404665771
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0544727,
+        "latitud": 4.6496822
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0544537,
+        "latitud": 4.6497562
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0544439,
+        "latitud": 4.6498254
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0544414,
+        "latitud": 4.6498899
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0544474,
+        "latitud": 4.6499722
+      },
+      {
+        "orden": 6,
+        "longitud": -74.0544655,
+        "latitud": 4.6500607
+      }
+    ],
+    "fecha": "2025-08-11T09:17:01.129000",
+    "IQR": 1.337,
+    "iri": 3.838,
+    "IRI_modificado": 1.874,
+    "az": 0.755,
+    "ax": 1.951,
+    "wx": 4.996,
+    "huecos": [
+      {
+        "latitud": 4.64935404665771,
+        "longitud": -74.05461445487998,
+        "magnitud": 1.2,
+        "velocidad": 4.754
+      },
+      {
+        "latitud": 4.6500607,
+        "longitud": -74.0544655,
+        "magnitud": 3.634,
+        "velocidad": 2.239
+      }
+    ]
+  },
+  {
+    "numero": 5,
+    "id": 1167399669631324688,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159495,
+    "tipo": "residential",
+    "latitud_origen": 4.648993987526865,
+    "latitud_destino": 4.6486715,
+    "longitud_origen": -74.05422448525108,
+    "longitud_destino": -74.0546168,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.05422448525108,
+        "latitud": 4.648993987526865
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0542185,
+        "latitud": 4.6489054
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0542285,
+        "latitud": 4.6488232
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0542531,
+        "latitud": 4.6487615
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0543271,
+        "latitud": 4.6486749
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0543908,
+        "latitud": 4.6486394
+      },
+      {
+        "orden": 6,
+        "longitud": -74.0544739,
+        "latitud": 4.6486254
+      },
+      {
+        "orden": 7,
+        "longitud": -74.0545504,
+        "latitud": 4.6486381
+      },
+      {
+        "orden": 8,
+        "longitud": -74.0546168,
+        "latitud": 4.6486715
+      }
+    ],
+    "fecha": "2025-08-11T09:21:36.129000",
+    "IQR": 2.011,
+    "iri": 5.544,
+    "IRI_modificado": 4.075,
+    "az": 1.94,
+    "ax": 0.895,
+    "wx": 1.622,
+    "huecos": [
+      {
+        "latitud": 4.648993987526865,
+        "longitud": -74.05422448525108,
+        "magnitud": 0.984,
+        "velocidad": 2.023
+      },
+      {
+        "latitud": 4.6486715,
+        "longitud": -74.0546168,
+        "magnitud": 1.685,
+        "velocidad": 2.408
+      }
+    ]
+  },
+  {
+    "numero": 6,
+    "id": 1167399669631491368,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159495,
+    "tipo": "residential",
+    "latitud_origen": 4.649629603999761,
+    "latitud_destino": 4.648993987526865,
+    "longitud_origen": -74.054163438792,
+    "longitud_destino": -74.05422448525108,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.054163438792,
+        "latitud": 4.649629603999761
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0542179,
+        "latitud": 4.6495249
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0542705,
+        "latitud": 4.6493646
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0542391,
+        "latitud": 4.6492103
+      },
+      {
+        "orden": 4,
+        "longitud": -74.05422448525108,
+        "latitud": 4.648993987526865
+      }
+    ],
+    "fecha": "2025-08-11T09:21:41.039000",
+    "IQR": 0.457,
+    "iri": 3.866,
+    "IRI_modificado": 4.402,
+    "az": 0.409,
+    "ax": 4.818,
+    "wx": 3.378,
+    "huecos": [
+      {
+        "latitud": 4.649629603999761,
+        "longitud": -74.054163438792,
+        "magnitud": 1.588,
+        "velocidad": 0.682
+      },
+      {
+        "latitud": 4.648993987526865,
+        "longitud": -74.05422448525108,
+        "magnitud": 4.321,
+        "velocidad": 1.794
+      }
+    ]
+  },
+  {
+    "numero": 7,
+    "id": 1167399669631444928,
+    "nombre": "Transversal 2",
+    "longitud": 73.58235265159495,
+    "tipo": "residential",
+    "latitud_origen": 4.6499095,
+    "latitud_destino": 4.649629603999761,
+    "longitud_origen": -74.0537111,
+    "longitud_destino": -74.054163438792,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0537111,
+        "latitud": 4.6499095
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0537614,
+        "latitud": 4.6499449
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0538479,
+        "latitud": 4.6499754
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0539286,
+        "latitud": 4.6499738
+      },
+      {
+        "orden": 4,
+        "longitud": -74.0539762,
+        "latitud": 4.6499534
+      },
+      {
+        "orden": 5,
+        "longitud": -74.0540307,
+        "latitud": 4.6498848
+      },
+      {
+        "orden": 6,
+        "longitud": -74.054163438792,
+        "latitud": 4.649629603999761
+      }
+    ],
+    "fecha": "2025-08-11T09:21:51.129000",
+    "IQR": 0.791,
+    "iri": 9.31,
+    "IRI_modificado": 2.581,
+    "az": 0.124,
+    "ax": 0.444,
+    "wx": 2.057,
+    "huecos": [
+      {
+        "latitud": 4.6499095,
+        "longitud": -74.0537111,
+        "magnitud": 4.358,
+        "velocidad": 2.687
+      },
+      {
+        "latitud": 4.649629603999761,
+        "longitud": -74.054163438792,
+        "magnitud": 4.574,
+        "velocidad": 3.469
+      }
+    ]
+  },
+  {
+    "numero": 8,
+    "id": 1167303420821487388,
+    "nombre": "Transversal 1A",
+    "longitud": 73.492,
+    "tipo": "residential",
+    "latitud_origen": 4.6492586,
+    "latitud_destino": 4.6499095,
+    "longitud_origen": -74.0538229,
+    "longitud_destino": -74.0537111,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0538229,
+        "latitud": 4.6492586
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0537329,
+        "latitud": 4.6497078
+      },
+      {
+        "orden": 2,
+        "longitud": -74.0537187,
+        "latitud": 4.6498372
+      },
+      {
+        "orden": 3,
+        "longitud": -74.0537111,
+        "latitud": 4.6499095
+      }
+    ],
+    "fecha": "2025-08-11T09:22:01.132000",
+    "IQR": 2.679,
+    "iri": 0.655,
+    "IRI_modificado": 3.861,
+    "az": 0.846,
+    "ax": 1.345,
+    "wx": 0.455,
+    "huecos": [
+      {
+        "latitud": 4.6492586,
+        "longitud": -74.0538229,
+        "magnitud": 4.62,
+        "velocidad": 4.649
+      },
+      {
+        "latitud": 4.6499095,
+        "longitud": -74.0537111,
+        "magnitud": 4.863,
+        "velocidad": 0.571
+      }
+    ]
+  }
+]
