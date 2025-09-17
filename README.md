@@ -1,6 +1,14 @@
-﻿# RecWay - Deployment Ready 
+﻿# RecWay - Deployment Ready ✅
 
 Este es el repositorio limpio de RecWay, listo para deployment en Azure con escalabilidad y buenas prácticas.
+
+## 🌐 URLs de Producción
+
+- **Frontend**: https://ashy-ground-06348160f.1.azurestaticapps.net
+- **Backend API**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
+- **Health Check**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io/health
+
+**Última actualización**: 2025-09-17 16:27 UTC
 
 ##  Estructura del Proyecto
 
