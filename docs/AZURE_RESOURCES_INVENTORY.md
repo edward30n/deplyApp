@@ -1,11 +1,19 @@
-# 📊 Inventario de Recursos Azure - RecWay
+# 📊 Inventario de Recursos Azur## 🚀 **Arquitectura Implementada FINAL**
+- **Frontend**: Azure Static Web Apps con GitHub Actions CI/CD
+- **Backend**: Azure Container Apps con autoscaling KEDA (0-5 réplicas)
+- **Base de Datos**: PostgreSQL Flexible Server con SSL requerido
+- **Contenedores**: Azure Container Registry con imagen `recway-backend:prod`
+- **Secretos**: Key Vault integrado directamente con Container Apps
+- **Storage**: Blob Storage para archivos y datos geoespaciales
+- **Monitoring**: Log Analytics + Container Apps metrics automático
+- **Escalabilidad**: Autoscaling por CPU (70% threshold) implementadoWay
 
 **Fecha**: 2025-09-17  
 **Analista**: Sistema de Documentación Automática  
-**Última Actualización**: 2025-09-17 15:35 UTC - Recursos de Producción Creados
+**Última Actualización**: 2025-09-17 16:10 UTC - DEPLOYMENT COMPLETADO CON AZURE CONTAINER APPS
 
 ## 🎯 Objetivo
-Documentar el estado actual de recursos Azure con la nueva arquitectura de producción implementada.
+Documentar el estado final de recursos Azure con la arquitectura de producción implementada y funcionando.
 
 ---
 
@@ -14,11 +22,13 @@ Documentar el estado actual de recursos Azure con la nueva arquitectura de produ
 
 | Recurso | Tipo | Ubicación | URL/Endpoint | Estado |
 |---------|------|-----------|-------------|--------|
-| `recway09171024` | Container Registry | East US | `recway09171024.azurecr.io` | 🟢 Activo |
-| `recway-kv-09171024` | Key Vault | East US | `recway-kv-09171024.vault.azure.net` | 🟢 Activo |
-| `recway-db-09171024` | PostgreSQL Flexible | East US | `recway-db-09171024.postgres.database.azure.com` | 🟢 Activo |
-| `recwaystorage09171024` | Storage Account | East US | `recwaystorage09171024.blob.core.windows.net` | 🟢 Activo |
-| `recway-frontend-09171024` | Static Web App | East US 2 | `ashy-ground-06348160f.1.azurestaticapps.net` | 🟢 Activo |
+| `recway09171024` | Container Registry | East US | `recway09171024.azurecr.io` | 🟢 Activo + Imagen deployada |
+| `recway-kv-09171024` | Key Vault | East US | `recway-kv-09171024.vault.azure.net` | 🟢 Activo + Secrets integrados |
+| `recway-db-09171024` | PostgreSQL Flexible | East US | `recway-db-09171024.postgres.database.azure.com` | 🟢 Activo + Conectado |
+| `recwaystorage09171024` | Storage Account | East US | `recwaystorage09171024.blob.core.windows.net` | 🟢 Activo + Configurado |
+| `recway-frontend-09171024` | Static Web App | East US 2 | `ashy-ground-06348160f.1.azurestaticapps.net` | 🟢 Activo + Workflow listo |
+| `recway-env` | Container Apps Environment | East US | `kindmoss-bca66faa.eastus.azurecontainerapps.io` | 🟢 Activo + Log Analytics |
+| `recway-backend` | Container App | East US | `recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io` | 🟢 Running + Autoscaling |
 
 **Credenciales PostgreSQL:**
 - **Usuario**: `recwayadmin`

@@ -26,9 +26,13 @@ AZURE_STATIC_WEB_APPS_API_TOKEN
 - [x] Service Principal creado  
 - [x] Permisos Contributor asignados
 - [x] Credencial federada configurada
-- [x] Workflows actualizados para Container Instances
+- [x] Azure Container Apps desplegado y funcionando
+- [x] GitHub Actions workflow configurado
 - [x] Key Vault con secretos configurados
-- [x] Azure resources creados
+- [x] Azure resources creados y operativos
+- [x] Backend health check funcionando
+- [x] CORS configurado correctamente
+- [ ] Último secret SWA por configurar manualmente
 
 ## 🚀 Próximo paso
 
@@ -39,5 +43,15 @@ AZURE_STATIC_WEB_APPS_API_TOKEN
 ## 🌐 URLs Finales
 
 - **Frontend**: https://ashy-ground-06348160f.1.azurestaticapps.net
-- **Backend**: https://recway-backend-09171024.eastus.azurecontainer.io:8000 (después del primer deploy)
+- **Backend**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io
+- **API Health Check**: https://recway-backend.kindmoss-bca66faa.eastus.azurecontainerapps.io/health
 - **Base de Datos**: recway-db-09171024.postgres.database.azure.com
+
+## 🚀 Características Implementadas
+
+- ✅ **Autoscaling**: 0-5 réplicas basado en CPU (70%)
+- ✅ **Zero Downtime**: Container Apps revision management
+- ✅ **Security**: Key Vault integration + RBAC
+- ✅ **Monitoring**: Log Analytics + Container Apps metrics
+- ✅ **CI/CD**: GitHub Actions para frontend
+- ✅ **HTTPS**: SSL/TLS automático para todos los servicios

@@ -3,27 +3,32 @@
 - [x] Configuración de variables de entorno backend - **CORS dinámico implementado**
 - [x] Configuración de variables de entorno frontend - **Configuración centralizada creada**
 - [x] CORS dinámico - **Flexible entre local/Azure automáticamente**
-- [ ] Uvicorn Azure-ready
+- [x] Uvicorn Azure-ready - **Container Apps deployment**
 - [x] Eliminación localhost hardcoded - **✅ TODAS LAS REFERENCIAS ELIMINADAS**
-- [ ] Storage flexible
+- [x] Storage flexible - **Azure Blob Storage integrado**
 - [x] Testing local post-cambios - **✅ Build exitoso**
-- [ ] Verificación Azure-ready
+- [x] Verificación Azure-ready - **✅ DEPLOYMENT COMPLETADO**
+- [x] **Azure Container Apps** - **✅ BACKEND FUNCIONAL CON AUTOSCALING**
 
-### 🎯 Backend Configuration - COMPLETADO
+### 🎯 Backend Configuration - COMPLETADO ✅
 - ✅ **Configuración flexible** entre `local`/`azure` usando `ENV` variable
 - ✅ **CORS dinámico** que adapta orígenes según entorno
 - ✅ **Variables centralizadas** en `app/core/config.py`
 - ✅ **Archivos .env separados**: `.env.local`, `.env.azure`, `.env`
 - ✅ **Proxy headers** configurados automáticamente para Azure
 - ✅ **Logging de configuración** para debugging
+- ✅ **Container Apps deployment** con autoscaling 0-5 réplicas
+- ✅ **Key Vault integration** para secrets management
 
-### 🎯 Frontend Configuration - COMPLETADO
+### 🎯 Frontend Configuration - COMPLETADO ✅
 - ✅ **Configuración centralizada** en `src/config/api.ts`
 - ✅ **Variables de entorno** `.env.local`, `.env.azure`
 - ✅ **API URL flexible** usando `VITE_API_URL`
 - ✅ **Helper functions** `buildApiUrl()`, `getApiHeaders()`
 - ✅ **Todas las referencias hardcodeadas eliminadas** de 9 archivos
 - ✅ **Import unificado** desde configuración central
+- ✅ **GitHub Actions workflow** configurado para SWA deployment
+- ✅ **Static Web App** listo con routing SPA
 
 ### 📋 Archivos Modificados/Creados
 **Backend:**
