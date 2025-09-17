@@ -1,90 +1,166 @@
-# 📊 Inventario de Recursos Azure - RecWay
+﻿#  Inventario de Recursos Azure - RecWay Production
 
 **Fecha**: 2025-09-17  
-**Analista**: Sistema de Documentación Automática
+**Estado**: Deployment Ready - Arquitectura Limpia  
+**Repositorio**: https://github.com/edward30n/deplyApp  
 
-## 🎯 Objetivo
-Documentar el estado actual de recursos Azure para planificar limpieza controlada y deployment de SWA.
+##  Arquitectura de Deployment
 
----
+Arquitectura **"Git push y listo"** con escalabilidad y buenas prácticas:
 
-## 🟢 **recway-central-rg** (PRESERVAR - NO TOCAR)
-> Grupo funcional que debe mantenerse como respaldo
-
-| Recurso | Tipo | Ubicación | Estado |
-|---------|------|-----------|--------|
-| `recway-backend-central` | App Service | Central US | 🟢 Funcional |
-| `recway-db-new` | PostgreSQL Flexible | Central US | 🟢 Funcional |
-| `recway-frontend` | Static Web App | Central US | 🟢 Funcional |
-| `recway-keyvault-02` | Key Vault | Central US | 🟢 Funcional |
-| `recway-plan-central` | App Service Plan | Central US | 🟢 Funcional |
-| `recwayacr2` | Container Registry | Central US | 🟢 Funcional |
-| `recwaystorage02` | Storage Account | Central US | 🟢 Funcional |
+| Componente | Servicio Azure | Nombre del Recurso | Propósito |
+|------------|----------------|-------------------|-----------|
+| **Frontend** | Static Web Apps | ecway-frontend | CDN global, SSL automático |
+| **Backend** | App Service Linux | ecway-backend-central | API FastAPI con autoscale |
+| **Base de Datos** | PostgreSQL Flexible | ecway-db-new | Base de datos principal |
+| **Imágenes** | Container Registry | ecwayacr2 | Imágenes Docker del backend |
+| **Archivos** | Storage Account | ecwaystorage02 | Archivos y procesamiento |
+| **Secretos** | Key Vault | ecway-keyvault-02 | Gestión segura de secretos |
+| **Monitoreo** | Application Insights | ecway-ai | Observabilidad y telemetría |
+| **Escalado** | App Service Plan S1 | ecway-plan-prod | Autoscale + slots |
 
 ---
 
-## 🟡 **recway-dev-rg** (LIMPIEZA CONTROLADA)
-> Grupo de desarrollo - Candidatos para limpieza y reorganización
+##  Recursos Creados por el Bootstrap
 
-### 🔴 Recursos Duplicados/Obsoletos (CANDIDATOS A ELIMINAR)
-| Recurso | Tipo | Problema | Acción Sugerida |
-|---------|------|-----------|----------------|
-| `recway-frontend-dev` | App Service | Duplicado - Reemplazar por SWA | ❌ Eliminar |
-| `recway-frontend-swa-dev` | Static Web App | Ya existe - Verificar estado | ⚠️ Evaluar |
-| `recway-dev-kv-3634` | Key Vault | Duplicado - Solo uno necesario | ❌ Eliminar |
-| `recway-dev-kv-7619` | Key Vault | Duplicado - Solo uno necesario | ❌ Eliminar |
-| `recway-dev-keyvault` | Key Vault | Duplicado - Solo uno necesario | ⚠️ Evaluar |
+### Resource Group: ecway-rg
+**Ubicación**: East US
 
-### 🟢 Recursos Útiles (MANTENER)
-| Recurso | Tipo | Ubicación | Propósito |
-|---------|------|-----------|-----------|
-| `recway-backend-dev` | App Service | Central US | Backend desarrollo |
-| `staging (recway-backend-dev/staging)` | App Service Slot | Central US | Staging slot |
-| `recway-dev-db` | PostgreSQL Flexible | East US | DB desarrollo |
-| `recway-dev-plan` | App Service Plan | Central US | Plan para backend |
-| `recwaydevacr` | Container Registry | Central US | Registry desarrollo |
-| `recwaydevstorage` | Storage Account | East US | Storage desarrollo |
+| Recurso | Tipo | SKU/Plan | Estado | Configuración Especial |
+|---------|------|----------|--------|----------------------|
+| ecwayacr2 | Container Registry | Standard |  Activo | Admin deshabilitado, Managed Identity |
+| ecway-keyvault-02 | Key Vault | Standard |  Activo | Managed Identity access |
+| ecway-db-new | PostgreSQL Flexible | B1ms |  Activo | v16, SSL required, Public access |
+| ecwaystorage02 | Storage Account | Standard_LRS |  Activo | Para uploads y procesamiento |
+| ecway-plan-prod | App Service Plan | S1 Linux |  Activo | **Autoscale habilitado** |
+| ecway-backend-central | App Service | - |  Activo | **Slots: staging**, Managed Identity |
+| ecway-ai | Application Insights | - |  Activo | Conectado al App Service |
 
-### 🔧 Recursos de Monitoreo (EVALUAR)
-| Recurso | Tipo | Necesario |
-|---------|------|-----------|
-| `recway-dev-ai` | Application Insights | ✅ Útil para monitoreo |
-| `managed-recway-dev-ai-ws` | Log Analytics | ✅ Útil para monitoreo |
+### Configuraciones Especiales
 
----
+#### Autoscale Configuration
+- **Mínimo**: 1 instancia
+- **Máximo**: 3 instancias  
+- **Scale Out**: CPU >70% durante 10 min
+- **Scale In**: CPU <30% durante 10 min
 
-## 🎯 **Plan de Limpieza Sugerido**
+#### Security & Identity
+- **Managed Identity**: Habilitada en App Service
+- **Roles asignados**:
+  - AcrPull en Container Registry
+  - Key Vault Secrets User en Key Vault
 
-### Fase 1: Eliminar Duplicados Obvios
-```bash
-# Key Vaults duplicados (mantener recway-dev-keyvault)
-az keyvault delete -n recway-dev-kv-3634 -g recway-dev-rg
-az keyvault delete -n recway-dev-kv-7619 -g recway-dev-rg
-
-# Frontend App Service (reemplazar por SWA)
-az webapp delete -n recway-frontend-dev -g recway-dev-rg
-```
-
-### Fase 2: Evaluar SWA Existente
-```bash
-# Verificar estado de SWA existente
-az staticwebapp show -n recway-frontend-swa-dev -g recway-dev-rg
-```
-
-### Fase 3: Crear Nueva Arquitectura Limpia
-- Usar SWA existente o crear nuevo
-- Configurar CORS en backend existente
-- Documentar conexiones
+#### Deployment Slots
+- **Production**: Slot principal
+- **Staging**: Para blue-green deployments
 
 ---
 
-## 📋 Próximos Pasos
-1. ✅ Crear documentación
-2. 🔄 Verificar estado actual de recursos
-3. ⏳ Ejecutar limpieza controlada
-4. ⏳ Implementar SWA deployment
+##  Secretos en Key Vault
+
+| Secret Name | Propósito | Formato |
+|-------------|-----------|---------|
+| ecway-secret-key | JWT signing key | String fuerte para firmas |
+| ecway-db-uri | Database connection | postgresql://user:pass@server:5432/db?sslmode=require |
+| ecway-storage-conn | Azure Storage | Connection string completa |
+
+---
+
+##  CI/CD Pipeline
+
+### GitHub Actions Workflows
+
+#### Backend Pipeline (.github/workflows/deploy_backend.yml)
+**Triggers**: Push a main con cambios en ackend/**
+
+1. **OIDC Login** a Azure (sin secretos hardcodeados)
+2. **Build & Push** imagen Docker a ACR
+3. **Deploy** a App Service con nuevo tag
+4. **Configure** app settings base
+5. **Restart** aplicación
+
+#### Frontend Pipeline (.github/workflows/deploy_frontend_swa.yml)  
+**Triggers**: Push a main con cambios en rontend/**
+
+1. **Build** aplicación Vite/React
+2. **Configure** VITE_API_URL para producción
+3. **Deploy** a Static Web Apps
+
+### App Settings Configurados
+
+`ash
+WEBSITES_PORT=8000
+ENV=azure
+API_V1_STR=/api/v1
+ENABLE_FILE_WATCHER=false
+FRONTEND_URL=https://recway-frontend.azurestaticapps.net
+CORS_ORIGINS=["https://recway-frontend.azurestaticapps.net"]
+
+# Key Vault References
+SECRET_KEY=@Microsoft.KeyVault(SecretUri=https://recway-keyvault-02.vault.azure.net/secrets/recway-secret-key/)
+DATABASE_URI=@Microsoft.KeyVault(SecretUri=https://recway-keyvault-02.vault.azure.net/secrets/recway-db-uri/)
+AZURE_STORAGE_CONNECTION_STRING=@Microsoft.KeyVault(SecretUri=https://recway-keyvault-02.vault.azure.net/secrets/recway-storage-conn/)
+`
+
+---
+
+##  URLs de Verificación
+
+### Endpoints de Health Check
+- **Backend**: https://recway-backend-central.azurewebsites.net/health
+- **API Stats**: https://recway-backend-central.azurewebsites.net/api/v1/recway/processing-stats
+- **Frontend**: https://recway-frontend.azurestaticapps.net
+
+### Monitoreo
+- **Application Insights**: Azure Portal  recway-ai
+- **App Service Metrics**: Azure Portal  recway-backend-central  Metrics
+- **Logs en tiempo real**: z webapp log tail -g recway-rg -n recway-backend-central
+
+---
+
+##  Operaciones Diarias
+
+### Deployment
+`ash
+# Automatic deployment
+git push origin main
+`
+
+### Rollback
+`ash
+# Cambiar a tag anterior
+az webapp config container set -g recway-rg -n recway-backend-central \
+  --docker-custom-image-name recwayacr2.azurecr.io/recway-backend:prod-<commit_anterior>
+
+# O usar slot swap
+az webapp deployment slot swap -g recway-rg -n recway-backend-central --slot staging
+`
+
+### Scaling Manual
+`ash
+# Aumentar máximo de instancias
+az monitor autoscale update -g recway-rg -n autoscale-recway-backend-central --max-count 10
+
+# Upgrade a Premium plan
+az appservice plan update -g recway-rg -n recway-plan-prod --sku P1V3
+`
+
+---
+
+##  Estado del Deployment
+
+-  **Infraestructura**: Creada y configurada
+-  **CI/CD**: Workflows funcionando  
+-  **Seguridad**: Key Vault + Managed Identity
+-  **Escalabilidad**: Autoscale configurado
+-  **Monitoreo**: Application Insights activo
+-  **Database**: Schema aplicado
+-  **Documentación**: Actualizada
+
+** ESTADO: PRODUCTION READY**
 
 ---
 
 **Última actualización**: 2025-09-17  
-**Estado**: Documentación inicial completada
+**Próxima revisión**: Después del primer deployment  
+**Responsable**: DevOps Team  
