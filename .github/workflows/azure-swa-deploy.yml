@@ -3,9 +3,6 @@ name: SWA Deploy
 on:
   push:
     branches: [ main ]
-    paths:
-      - "frontend/**"
-      - ".github/workflows/azure-swa-deploy.yml"
   workflow_dispatch:
 
 jobs:
