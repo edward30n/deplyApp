@@ -1,20 +1,4 @@
-name: Deploy Backend to Az    - name: Install dependencies
-      run: |
-        source venv/bin/activate
-        python -m pip install --upgrade pip
-        pip install -r backend/requirements.txt
-        
-    - name: Create deployment package
-      run: |
-        cd backend
-        zip -r ../backend-deployment.zip . -x "venv/*" "__pycache__/*" "*.pyc"
-        cd ..
-        
-    - name: Upload artifact for deployment jobs
-      uses: actions/upload-artifact@v4
-      with:
-        name: python-app
-        path: backend-deployment.zipvice
+name: Deploy Backend to Azure App Service
 
 on:
   push:
@@ -46,13 +30,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r backend/requirements.txt
         
-    - name: Upload artifact for deployment job
+    - name: Create deployment package
+      run: |
+        cd backend
+        zip -r ../backend-deployment.zip . -x "venv/*" "__pycache__/*" "*.pyc"
+        cd ..
+        
+    - name: Upload artifact for deployment jobs
       uses: actions/upload-artifact@v4
       with:
         name: python-app
-        path: |
-          backend/
-          venv/
+        path: backend-deployment.zip
           
   deploy:
     runs-on: ubuntu-latest
