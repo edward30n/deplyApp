@@ -57,9 +57,10 @@ async def test_endpoint():
     """Test endpoint to verify automated deployment"""
     return {
         "status": "success",
-        "message": "🚀 Backend CI/CD deployment working!",
+        "message": "🚀 Backend CI/CD deployment working perfectly!",
         "python_version": "3.12",
-        "deployment_date": "2025-09-18"
+        "deployment_date": "2025-09-18",
+        "workflows_cleaned": True
     }
 
 # Eventos de aplicación
