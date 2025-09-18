@@ -1,0 +1,33 @@
+name: Deploy Backend to Azure App Service
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Preparamos un paquete SOLO con el backend
+      - name: Prepare backend package
+        run: |
+          mkdir -p pkg
+          cp -R backend/* pkg/
+          # Marcador para Oryx (Python)
+          echo "python-3.12" > pkg/runtime.txt
+          # Asegurar gunicorn en requirements
+          if ! grep -qi '^gunicorn' pkg/requirements.txt; then echo "gunicorn" >> pkg/requirements.txt; fi
+          ls -la pkg
+
+      # Publicación usando el publish profile (no requiere azure/login)
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: recway-backend-central
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
+          package: pkg
