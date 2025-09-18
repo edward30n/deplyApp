@@ -60,7 +60,8 @@ async def test_endpoint():
         "message": "🚀 Backend CI/CD deployment working perfectly!",
         "python_version": "3.12",
         "deployment_date": "2025-09-18",
-        "workflows_cleaned": True
+        "workflows_cleaned": True,
+        "app_service_recreated": True
     }
 
 # Eventos de aplicación
