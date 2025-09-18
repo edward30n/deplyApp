@@ -1,5 +1,6 @@
 fastapi>=0.110,<0.116
 uvicorn[standard]>=0.24,<0.30
+gunicorn>=21.0,<22.0
 python-dotenv>=1.0
 requests>=2.31
 python-multipart>=0.0.6
