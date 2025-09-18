@@ -23,6 +23,8 @@ jobs:
           # Asegura dependencias de servidor
           grep -qi '^gunicorn' requirements.txt || echo "gunicorn" >> requirements.txt
           grep -qi '^uvicorn' requirements.txt || echo "uvicorn[standard]" >> requirements.txt
+          # Usar configuración de Azure en lugar del .env local
+          cp .env.azure .env
           # Zip del contenido de backend (quedará como /home/site/wwwroot/*)
           zip -r ../artifact.zip .
           cd ..
