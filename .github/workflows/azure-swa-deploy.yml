@@ -19,17 +19,34 @@ jobs:
           submodules: true
           lfs: false
       
-      - name: Build And Deploy
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm ci
+      
+      - name: Build application
+        run: |
+          cd frontend
+          npm run build
+        env:
+          VITE_API_URL: https://recway-backend-central.azurewebsites.net
+          VITE_API_BASE_URL: https://recway-backend-central.azurewebsites.net
+          VITE_ENV: production
+      
+      - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "frontend"
-          output_location: "dist"
+          app_location: "frontend/dist"
+          skip_app_build: true
           api_location: ""
-        env:
-          VITE_API_URL: https://recway-backend-central.azurewebsites.net
-          VITE_API_BASE_URL: https://recway-backend-central.azurewebsites.net
-          VITE_ENV: production
