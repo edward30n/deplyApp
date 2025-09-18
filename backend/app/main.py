@@ -51,6 +51,17 @@ app.include_router(recway_processing_router, prefix=settings.API_V1_STR + "/recw
 app.include_router(data_export_router, tags=["data-export"])  # Router funcional de exportación
 app.include_router(optimized_export_router, tags=["optimized-export"])  # Router optimizado
 
+# Test endpoint for CI/CD
+@app.get("/api/v1/test")
+async def test_endpoint():
+    """Test endpoint to verify automated deployment"""
+    return {
+        "status": "success",
+        "message": "🚀 Backend CI/CD deployment working!",
+        "python_version": "3.12",
+        "deployment_date": "2025-09-18"
+    }
+
 # Eventos de aplicación
 @app.on_event("startup")
 async def startup_event():

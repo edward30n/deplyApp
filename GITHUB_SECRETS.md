@@ -4,7 +4,21 @@
 
 Ve a: https://github.com/edward30n/deplyApp/settings/secrets/actions
 
-### Agregar estos 4 secretos:
+### 🌐 Frontend Secrets (SWA):
+
+```
+AZURE_STATIC_WEB_APPS_API_TOKEN
+5bdbc926583bb28ce9d67ef7db6a011d81f0a8a42a3ac86eac205d2824eb4c0901-19d7103a-42a8-48fd-9a72-d09504e439fd01004180e0abfc10
+```
+
+### 🚀 Backend Secrets (App Service):
+
+```
+AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND
+```
+**Valor**: Copia TODO el XML del publish profile que obtuviste con el comando az webapp deployment list-publishing-profiles
+
+### 🔧 Otros Secrets (si necesarios):
 
 ```
 AZURE_CLIENT_ID
@@ -15,19 +29,21 @@ e15fe7da-d2f7-4de4-b9fd-8b64a93c60be
 
 AZURE_SUBSCRIPTION_ID
 b63bb596-8e31-4ce3-83c3-fd6fa633e446
-
-AZURE_STATIC_WEB_APPS_API_TOKEN
-1fbca8fbd0c9492944b15518f4ff31c2d989d9176b36ff9128690816c5b20e3401-891963c1-043b-4d09-9083-749b1ad58b8a00f000606348160f
 ```
 
-## ✅ Status
+## ✅ Status CI/CD
 
-- [x] App Registration creado
-- [x] Service Principal creado  
-- [x] Permisos Contributor asignados
-- [x] Credencial federada configurada
-- [x] Azure Container Apps desplegado y funcionando
-- [x] GitHub Actions workflow configurado
+- [x] ✅ Frontend: Azure Static Web Apps deploy configurado
+- [x] ✅ Backend: Python 3.12 + FastAPI configurado  
+- [x] ✅ GitHub Actions: Workflows creados
+- [ ] ⏳ GitHub Secrets: Configurar AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND
+- [ ] ⏳ Testing: Probar deployment automático
+
+## 🎯 URLs de Producción
+
+- **Frontend**: https://green-rock-0e0abfc10.1.azurestaticapps.net
+- **Backend**: https://recway-backend-central.azurewebsites.net
+- **API Health Check**: https://recway-backend-central.azurewebsites.net/health
 - [x] Key Vault con secretos configurados
 - [x] Azure resources creados y operativos
 - [x] Backend health check funcionando
