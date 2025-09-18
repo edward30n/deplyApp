@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'backend/**'
+      - '.github/workflows/azure-backend-deploy.yml'
   workflow_dispatch:
 
 jobs:
@@ -13,21 +14,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Preparamos un paquete SOLO con el backend
-      - name: Prepare backend package
+      # Empaquetamos SOLO la carpeta backend tal cual
+      - name: Make artifact with Python markers
         run: |
-          mkdir -p pkg
-          cp -R backend/* pkg/
-          # Marcador para Oryx (Python)
-          echo "python-3.12" > pkg/runtime.txt
-          # Asegurar gunicorn en requirements
-          if ! grep -qi '^gunicorn' pkg/requirements.txt; then echo "gunicorn" >> pkg/requirements.txt; fi
-          ls -la pkg
+          cd backend
+          # Marcador para Oryx
+          [ -f runtime.txt ] || echo "python-3.12" > runtime.txt
+          # Asegura dependencias de servidor
+          grep -qi '^gunicorn' requirements.txt || echo "gunicorn" >> requirements.txt
+          grep -qi '^uvicorn' requirements.txt || echo "uvicorn[standard]" >> requirements.txt
+          # Zip del contenido de backend (quedará como /home/site/wwwroot/*)
+          zip -r ../artifact.zip .
+          cd ..
 
-      # Publicación usando el publish profile (no requiere azure/login)
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure Web App (ZipDeploy + Oryx on server)
         uses: azure/webapps-deploy@v3
         with:
           app-name: recway-backend-central
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
-          package: pkg
+          package: artifact.zip
