@@ -30,17 +30,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r backend/requirements.txt
         
-    - name: Create deployment package
-      run: |
-        cd backend
-        zip -r ../backend-deployment.zip . -x "venv/*" "__pycache__/*" "*.pyc"
-        cd ..
-        
     - name: Upload artifact for deployment jobs
       uses: actions/upload-artifact@v4
       with:
         name: python-app
-        path: backend-deployment.zip
+        path: backend/
           
   deploy:
     runs-on: ubuntu-latest
@@ -55,10 +49,6 @@ jobs:
       with:
         name: python-app
         
-    - name: Extract deployment package
-      run: |
-        unzip backend-deployment.zip -d deployment/
-        
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v3
       id: deploy-to-webapp
@@ -66,4 +56,4 @@ jobs:
         app-name: 'recway-backend-central'
         slot-name: 'Production'
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
-        package: 'deployment/'
+        package: 'backend/'
