@@ -62,10 +62,15 @@ class Settings:
             except json.JSONDecodeError:
                 pass
         
-        # Fallback a FRONTEND_URL + common local URLs
+        # Fallback a FRONTEND_URL + common local URLs + Azure Static Web Apps
         origins = []
         if self.FRONTEND_URL:
             origins.append(self.FRONTEND_URL)
+        
+        # Agregar Azure Static Web Apps URL (producción)
+        azure_swa_url = "https://green-rock-0e0abfc10.1.azurestaticapps.net"
+        if azure_swa_url not in origins:
+            origins.append(azure_swa_url)
         
         # Agregar URLs locales comunes para desarrollo
         if self.ENV == "local":
