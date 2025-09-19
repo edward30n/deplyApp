@@ -20,9 +20,7 @@ jobs:
           cd backend
           # Marcador para Oryx
           [ -f runtime.txt ] || echo "python-3.12" > runtime.txt
-          # Asegura dependencias de servidor
-          grep -qi '^gunicorn' requirements.txt || echo "gunicorn" >> requirements.txt
-          grep -qi '^uvicorn' requirements.txt || echo "uvicorn[standard]" >> requirements.txt
+          # NO modificar requirements.txt - ya está correcto en el repo
           # Crear .env con configuración de producción
           echo "ENV=production" > .env
           echo "FRONTEND_URL=https://green-rock-0e0abfc10.1.azurestaticapps.net" >> .env
