@@ -23,7 +23,17 @@ jobs:
           # Asegura dependencias de servidor
           grep -qi '^gunicorn' requirements.txt || echo "gunicorn" >> requirements.txt
           grep -qi '^uvicorn' requirements.txt || echo "uvicorn[standard]" >> requirements.txt
-          # NO crear .env - usar Azure App Settings en su lugar
+          # Crear .env con configuración de producción
+          echo "ENV=production" > .env
+          echo "FRONTEND_URL=https://green-rock-0e0abfc10.1.azurestaticapps.net" >> .env
+          echo "BASE_URL=https://recway-backend-central.azurewebsites.net" >> .env
+          echo 'CORS_ORIGINS=["https://green-rock-0e0abfc10.1.azurestaticapps.net"]' >> .env
+          echo "DATABASE_URI=postgresql://recwayadmin:Edward123!@recway-db-new.postgres.database.azure.com:5432/recway_db?sslmode=require" >> .env
+          echo "API_V1_STR=/api/v1" >> .env
+          echo "PROJECT_NAME=RecWay" >> .env
+          echo "ENABLE_FILE_WATCHER=false" >> .env
+          echo "USE_PROXY_HEADERS=true" >> .env
+          echo "HOST=0.0.0.0" >> .env
           # Zip del contenido de backend (quedará como /home/site/wwwroot/*)
           zip -r ../artifact.zip .
           cd ..
