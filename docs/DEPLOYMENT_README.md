@@ -1,53 +1,41 @@
-# RecWay Azure Deployment Guide
+# RecWay Deployment Guide - Producción Azure
 
-## 🎯 Objetivo
-"Git push y listo" con escalabilidad y buenas prácticas:
+## 📋 Estado Actual del Deployment
 
-- **Frontend**: Azure Static Web Apps (SWA) - CDN global, SSL automático
-- **Backend**: App Service Linux (Plan S1 para autoscale y slots)
-- **Imágenes**: Azure Container Registry (ACR)
-- **DB**: PostgreSQL Flexible Server
-- **Archivos**: Azure Storage Account
-- **Secretos**: Key Vault con Managed Identity
-- **CI/CD**: GitHub Actions con OIDC (sin credenciales hardcodeadas)
+**Estado**: ✅ COMPLETAMENTE DESPLEGADO Y FUNCIONAL  
+**Fecha**: 19 de Septiembre, 2025  
+**Plan Azure**: P1v2 (3.5 GB RAM, optimizado para ML)  
+**Performance**: 100% operativo con FileWatcher activo
 
-## 📁 Estructura del Proyecto
+## 🎯 URLs de Producción Activas
 
+- **Frontend**: https://green-rock-0e0abfc10.1.azurestaticapps.net/
+- **Backend API**: https://recway-backend-central.azurewebsites.net
+- **API Docs**: https://recway-backend-central.azurewebsites.net/docs
+- **Health Check**: https://recway-backend-central.azurewebsites.net/api/v1/test ✅
+- **CSV Upload**: https://recway-backend-central.azurewebsites.net/api/v1/files/upload-csv ✅
+
+## 🏗️ Arquitectura de Recursos Azure
+
+### 📊 Inventario Actual de Recursos
 ```
-/ (repo raíz)
-├─ backend/
-│  ├─ app/...
-│  ├─ requirements.txt
-│  └─ Dockerfile.azure          # ✅ Creado
-├─ frontend/
-│  ├─ src/...
-│  └─ package.json
-├─ infra/
-│  └─ scripts/azure_bootstrap.sh # ✅ Creado
-└─ .github/workflows/
-   ├─ deploy_backend_clean.yml   # ✅ Creado
-   └─ deploy_frontend_clean.yml  # ✅ Creado
-```
-
-## 🚀 Paso a Paso de Deployment
-
-### 1. Provisionar Recursos de Azure (Una sola vez)
-
-Ejecuta el script de bootstrap:
-
-```bash
-# Dale permisos de ejecución
-chmod +x infra/scripts/azure_bootstrap.sh
-
-# Ejecuta (asegúrate de estar logueado con az login)
-./infra/scripts/azure_bootstrap.sh
+Resource Group: recway-central-rg (Central US)
+├── recway-backend-central        # App Service (P1v2)
+├── recway-frontend              # Static Web App
+├── recway-db-new               # PostgreSQL Flexible Server
+├── recway-plan-central         # App Service Plan (P1v2)
+├── recwaystorage02            # Storage Account
+├── recway-keyvault-02         # Key Vault
+├── oidc-msi-9adf              # Managed Identity
+└── oidc-msi-ac11              # Managed Identity
 ```
 
-**Recursos que crea:**
-- Resource Group: `recway-rg`
-- ACR: `recwayacr2`
-- Key Vault: `recway-keyvault-02`
-- PostgreSQL: `recway-db-new`
+### 💰 Costos Estimados (Mensuales)
+- **App Service P1v2**: ~$75/mes
+- **PostgreSQL Flexible**: ~$8/mes
+- **Static Web Apps**: Gratis (tier público)
+- **Key Vault**: ~$2/mes
+- **Total**: ~$85/mes
 - Storage: `recwaystorage02`
 - App Service Plan S1: `recway-plan-prod` (para autoscale/slots)
 - Web App: `recway-backend-central`

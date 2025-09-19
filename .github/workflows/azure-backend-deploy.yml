@@ -36,8 +36,8 @@ jobs:
           echo "HOST=0.0.0.0" >> .env
           echo "USE_PROXY_HEADERS=true" >> .env
           echo "" >> .env
-          echo "# File Watcher (deshabilitado en Azure)" >> .env
-          echo "ENABLE_FILE_WATCHER=false" >> .env
+          echo "# File Watcher (habilitado en Azure para procesamiento automático)" >> .env
+          echo "ENABLE_FILE_WATCHER=true" >> .env
           echo "" >> .env
           echo "# Storage (archivos locales - Storage Account no usado actualmente)" >> .env
           echo "USE_AZURE_STORAGE=false" >> .env
