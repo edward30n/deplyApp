@@ -388,6 +388,163 @@ async def clear_processed_files():
             detail=f"Error limpiando archivos: {str(e)}"
         )
 
+@router.delete("/clear-raw")
+async def clear_raw_files():
+    """
+    Limpiar absolutamente todo el contenido de la carpeta uploads
+    (mantiene las carpetas pero elimina todos los archivos)
+    """
+    try:
+        from pathlib import Path
+        
+        # Obtener la carpeta base de uploads
+        uploads_dir = Path(csv_processor.carpeta_csv).parent.parent  # uploads/csv/raw -> uploads
+        archivos_eliminados = 0
+        carpetas_limpiadas = []
+        
+        logger.info(f"Iniciando limpieza completa de uploads: {uploads_dir}")
+        
+        # Limpiar todas las subcarpetas de uploads recursivamente
+        if uploads_dir.exists():
+            for carpeta in uploads_dir.rglob('*'):
+                if carpeta.is_file():
+                    # Eliminar archivo (excepto .gitkeep)
+                    if carpeta.name != '.gitkeep':
+                        carpeta.unlink()
+                        archivos_eliminados += 1
+                        logger.info(f"Eliminado: {carpeta.relative_to(uploads_dir)}")
+                elif carpeta.is_dir() and carpeta != uploads_dir:
+                    # Añadir carpeta a la lista (para información)
+                    carpeta_rel = str(carpeta.relative_to(uploads_dir))
+                    if carpeta_rel not in carpetas_limpiadas:
+                        carpetas_limpiadas.append(carpeta_rel)
+        
+        return {
+            "status": "success",
+            "message": f"Se eliminaron {archivos_eliminados} archivos de toda la carpeta uploads",
+            "archivos_eliminados": archivos_eliminados,
+            "carpetas_limpiadas": sorted(carpetas_limpiadas),
+            "uploads_dir": str(uploads_dir),
+            "nota": "Se mantuvieron todas las carpetas y archivos .gitkeep"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error limpiando uploads completo: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error limpiando uploads: {str(e)}"
+        )
+
+@router.delete("/clear-csv-only")
+async def clear_csv_files_only():
+    """
+    Limpiar solo archivos CSV de la carpeta raw (opción más conservadora)
+    """
+    try:
+        from pathlib import Path
+        
+        carpeta_raw = Path(csv_processor.carpeta_csv)
+        archivos_eliminados = 0
+        
+        # Limpiar solo CSV en raw
+        if carpeta_raw.exists():
+            for archivo in carpeta_raw.glob("*.csv"):
+                archivo.unlink()
+                archivos_eliminados += 1
+                logger.info(f"Eliminado archivo CSV: {archivo.name}")
+        
+        return {
+            "status": "success",
+            "message": f"Se eliminaron {archivos_eliminados} archivos CSV de la carpeta raw",
+            "archivos_eliminados": archivos_eliminados,
+            "carpeta": str(carpeta_raw)
+        }
+        
+    except Exception as e:
+        logger.error(f"Error limpiando archivos CSV: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error limpiando archivos CSV: {str(e)}"
+        )
+
+@router.delete("/delete-raw-file/{filename}")
+async def delete_specific_raw_file(filename: str):
+    """
+    Eliminar un archivo CSV específico de la carpeta raw
+    """
+    try:
+        from pathlib import Path
+        
+        carpeta_raw = Path(csv_processor.carpeta_csv)
+        archivo_path = carpeta_raw / filename
+        
+        if not archivo_path.exists():
+            raise HTTPException(
+                status_code=404,
+                detail=f"Archivo {filename} no encontrado en carpeta raw"
+            )
+        
+        if not filename.lower().endswith('.csv'):
+            raise HTTPException(
+                status_code=400,
+                detail="Solo se pueden eliminar archivos .csv"
+            )
+        
+        archivo_path.unlink()
+        logger.info(f"Eliminado archivo específico: {filename}")
+        
+        return {
+            "status": "success",
+            "message": f"Archivo {filename} eliminado exitosamente",
+            "filename": filename,
+            "carpeta": str(carpeta_raw)
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error eliminando archivo {filename}: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error eliminando archivo: {str(e)}"
+        )
+
+@router.get("/list-raw-files")
+async def list_raw_files():
+    """
+    Listar archivos CSV pendientes en la carpeta raw
+    """
+    try:
+        from pathlib import Path
+        
+        carpeta_raw = Path(csv_processor.carpeta_csv)
+        archivos_csv = []
+        
+        if carpeta_raw.exists():
+            for archivo in sorted(carpeta_raw.glob("*.csv")):
+                stat = archivo.stat()
+                archivos_csv.append({
+                    "filename": archivo.name,
+                    "size_bytes": stat.st_size,
+                    "size_mb": round(stat.st_size / (1024 * 1024), 2),
+                    "created_at": stat.st_ctime,
+                    "modified_at": stat.st_mtime
+                })
+        
+        return {
+            "status": "success",
+            "carpeta": str(carpeta_raw),
+            "total_archivos": len(archivos_csv),
+            "archivos": archivos_csv
+        }
+        
+    except Exception as e:
+        logger.error(f"Error listando archivos raw: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error listando archivos: {str(e)}"
+        )
+
 # Endpoints para File Watcher
 @router.get("/file-watcher/status")
 async def get_file_watcher_status_endpoint():
