@@ -27,12 +27,12 @@ logger = logging.getLogger(__name__)
 class SimpleCSVWatcher:
     """Watcher basado en polling para una carpeta de archivos CSV con ThreadPoolExecutor para concurrencia."""
 
-    def __init__(self, watch_folder: str = None, poll_interval: float = 2.0, stable_seconds: float = 3.0, max_concurrent_files: int = 3):
+    def __init__(self, watch_folder: str = None, poll_interval: float = 2.0, stable_seconds: float = 1.0, max_concurrent_files: int = 3):
         from app.core.config import settings
         # Por defecto usa el directorio configurado
         self.watch_folder = Path(watch_folder or settings.CSV_RAW_DIR)
         self.poll_interval = poll_interval
-        self.stable_seconds = stable_seconds
+        self.stable_seconds = stable_seconds  # Reducido a 1 segundo para debugging
         self.max_concurrent_files = max_concurrent_files
         self._thread: threading.Thread | None = None
         self._stop_event = threading.Event()
@@ -153,7 +153,9 @@ class SimpleCSVWatcher:
                     entry['last_stable_since'] = now
                     continue
                 # Verificar si alcanzó estabilidad
-                if (now - entry['last_stable_since']) >= self.stable_seconds:
+                stable_duration = now - entry['last_stable_since']
+                if stable_duration >= self.stable_seconds:
+                    logger.info(f"🚀 Archivo estable, iniciando procesamiento: {file_path.name} (estable por {stable_duration:.1f}s)")
                     self._processing.add(path_str)
                     # USAR THREADPOOL en lugar de Thread individual
                     future = self._executor.submit(self._process_file_safe, file_path)
@@ -162,7 +164,14 @@ class SimpleCSVWatcher:
                     # Callback para limpiar cuando termine
                     def cleanup_future(fut, path=path_str):
                         self._active_futures.pop(path, None)
+                        try:
+                            result = fut.result()  # Esto lanzará la excepción si hubo una
+                            logger.info(f"✅ Procesamiento completado para: {Path(path).name}")
+                        except Exception as e:
+                            logger.error(f"❌ Error en callback de procesamiento para {Path(path).name}: {e}")
                     future.add_done_callback(cleanup_future)
+                else:
+                    logger.debug(f"⏳ Esperando estabilidad: {file_path.name} (estable por {stable_duration:.1f}s/{self.stable_seconds}s)")
             # Limpiar entradas de archivos desaparecidos
             existing_set = {str(p) for p in current_files}
             to_remove = [p for p in self._seen_files.keys() if p not in existing_set and p not in self._processing]
@@ -180,20 +189,31 @@ class SimpleCSVWatcher:
         
         try:
             logger.info(f"🔄 Iniciando procesamiento automático completo de: {filename}")
+            logger.info(f"📍 Ruta completa: {file_path.resolve()}")
             
             # PASO 1: Verificar que el archivo existe y no está vacío
-            if not file_path.exists() or file_path.stat().st_size == 0:
-                logger.warning(f"⚠️ Archivo no válido o vacío: {filename}")
+            if not file_path.exists():
+                logger.error(f"⚠️ Archivo no existe: {filename}")
                 return
+                
+            file_size = file_path.stat().st_size
+            if file_size == 0:
+                logger.error(f"⚠️ Archivo vacío: {filename}")
+                return
+                
+            logger.info(f"📏 Tamaño del archivo: {file_size} bytes")
             
             # PASO 2: Procesar CSV → JSON
             logger.info(f"📄 Paso 1/3: Procesando CSV → JSON para {filename}")
-            csv_result = csv_processor.procesar_archivo_especifico(filename)
-            if not csv_result:
-                logger.error(f"❌ Error en procesamiento CSV → JSON para: {filename}")
+            try:
+                csv_result = csv_processor.procesar_archivo_especifico(filename)
+                if not csv_result:
+                    logger.error(f"❌ Error en procesamiento CSV → JSON para: {filename}")
+                    return
+                logger.info(f"✅ CSV → JSON completado para {filename}")
+            except Exception as e:
+                logger.error(f"❌ Excepción en procesamiento CSV → JSON para {filename}: {e}")
                 return
-            
-            logger.info(f"✅ CSV → JSON completado para {filename}")
             
             # PASO 3: Determinar rutas de archivos
             from app.core.config import settings
