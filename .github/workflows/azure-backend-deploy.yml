@@ -20,6 +20,8 @@ jobs:
           cd backend
           # Marcador para Oryx
           [ -f runtime.txt ] || echo "python-3.12" > runtime.txt
+          # Startup command para uvicorn directo (evita problemas con gunicorn+uvicorn worker)
+          echo "python -m uvicorn app.main:app --host 0.0.0.0 --port 8000" > startup.txt
           # NO modificar requirements.txt - ya está correcto en el repo
           # Crear .env completo con TODA la configuración de producción
           echo "# Configuración para Azure (producción)" > .env
