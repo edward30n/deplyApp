@@ -481,8 +481,7 @@ def get_countries(db: Session = Depends(get_db)):
     return [
         {
             "code": country.code,
-            "name": country.name,
-            "phone_prefix": country.phone_prefix
+            "name": country.name
         }
         for country in countries
     ]
