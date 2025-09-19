@@ -21,17 +21,51 @@ jobs:
           # Marcador para Oryx
           [ -f runtime.txt ] || echo "python-3.12" > runtime.txt
           # NO modificar requirements.txt - ya está correcto en el repo
-          # Crear .env con configuración de producción
-          echo "ENV=production" > .env
+          # Crear .env completo con TODA la configuración de producción
+          echo "# Configuración para Azure (producción)" > .env
+          echo "ENV=production" >> .env
+          echo "" >> .env
+          echo "# Database (Azure PostgreSQL)" >> .env
+          echo "DATABASE_URI=postgresql://recwayadmin:edward123@recway-db-new.postgres.database.azure.com/recway_db?sslmode=require" >> .env
+          echo "" >> .env
+          echo "# URLs (Azure reales)" >> .env
           echo "FRONTEND_URL=https://green-rock-0e0abfc10.1.azurestaticapps.net" >> .env
           echo "BASE_URL=https://recway-backend-central.azurewebsites.net" >> .env
-          echo 'CORS_ORIGINS=["https://green-rock-0e0abfc10.1.azurestaticapps.net"]' >> .env
-          echo "DATABASE_URI=postgresql://recwayadmin:Edward123!@recway-db-new.postgres.database.azure.com:5432/recway_db?sslmode=require" >> .env
-          echo "API_V1_STR=/api/v1" >> .env
-          echo "PROJECT_NAME=RecWay" >> .env
-          echo "ENABLE_FILE_WATCHER=false" >> .env
-          echo "USE_PROXY_HEADERS=true" >> .env
+          echo "" >> .env
+          echo "# Server Configuration (Azure App Service)" >> .env
           echo "HOST=0.0.0.0" >> .env
+          echo "USE_PROXY_HEADERS=true" >> .env
+          echo "" >> .env
+          echo "# File Watcher (deshabilitado en Azure)" >> .env
+          echo "ENABLE_FILE_WATCHER=false" >> .env
+          echo "" >> .env
+          echo "# Storage (archivos locales - Storage Account no usado actualmente)" >> .env
+          echo "USE_AZURE_STORAGE=false" >> .env
+          echo "" >> .env
+          echo "# Email Configuration (producción)" >> .env
+          echo "SMTP_SERVER=smtp.gmail.com" >> .env
+          echo "SMTP_PORT=587" >> .env
+          echo "SMTP_USERNAME=edniduva@gmail.com" >> .env
+          echo "SMTP_PASSWORD=cmezynkoglzlmbrf" >> .env
+          echo "EMAIL_FROM=noreply@recway.com" >> .env
+          echo "EMAIL_FROM_NAME=RecWay" >> .env
+          echo "" >> .env
+          echo "# Security Configuration (producción)" >> .env
+          echo "SECRET_KEY=recway-secret-key-azure-production-secure" >> .env
+          echo "ALGORITHM=HS256" >> .env
+          echo "ACCESS_TOKEN_EXPIRE_MINUTES=1440" >> .env
+          echo "REFRESH_TOKEN_EXPIRE_DAYS=7" >> .env
+          echo "" >> .env
+          echo "# API Configuration" >> .env
+          echo "PROJECT_NAME=RecWay" >> .env
+          echo "API_V1_STR=/api/v1" >> .env
+          echo "ENVIRONMENT=production" >> .env
+          echo "" >> .env
+          echo "# CORS Configuration (URLs reales de Azure)" >> .env
+          echo 'CORS_ORIGINS=["https://green-rock-0e0abfc10.1.azurestaticapps.net"]' >> .env
+          echo "" >> .env
+          echo "# Logging (producción)" >> .env
+          echo "LOG_LEVEL=INFO" >> .env
           # Zip del contenido de backend (quedará como /home/site/wwwroot/*)
           zip -r ../artifact.zip .
           cd ..
